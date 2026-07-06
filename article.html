@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><title>Блог о редукторах — подбор, эксплуатация, импортозамещение | Завод Редукторов</title><meta name="description" content="Статьи о подборе редукторов, замене импортных приводов и эксплуатации приводной техники от инженеров Завода Редукторов."><meta name="keywords" content="блог о редукторах, подбор редуктора, импортозамещение редукторов"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:site_name" content="Завод Редукторов"><meta property="og:title" content="Блог о редукторах — подбор, эксплуатация, импортозамещение | Завод Редукторов"><meta property="og:description" content="Статьи о подборе редукторов, замене импортных приводов и эксплуатации приводной техники от инженеров Завода Редукторов."><meta name="twitter:card" content="summary_large_image"><style id="zr-theme">:root{--bg:#eef0ec;--bg2:#e6e9e3;--surface:#ffffff;--surface2:#f5f6f2;--border:rgba(10,20,28,0.12);--text:#101f2a;--dim:#5a6a75;--accent:#e8500f;--accent-ink:#ffffff;--glow:rgba(232,80,15,0.10);--logo-filter:brightness(0) saturate(0) opacity(.85);--brand-filter:brightness(0) opacity(.55);--good:#12915f;--bad:#c33b3b;}html[data-theme="dark"]{--bg:#0a1219;--bg2:#0d1a24;--surface:#12212d;--surface2:#182b39;--border:rgba(255,255,255,0.10);--text:#eef3f6;--dim:#8ea0ad;--accent:#ff5a1f;--accent-ink:#0a1219;--glow:rgba(255,90,31,0.16);--logo-filter:none;--brand-filter:brightness(0) invert(1) opacity(.72);--good:#22c58b;--bad:#e05252;}#__bundler_err,#__bundler_loading,#__bundler_thumbnail{display:none!important}.zr-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);z-index:9999;background:var(--accent);color:var(--accent-ink);font:600 14px/1.3 Archivo,system-ui,sans-serif;padding:13px 20px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.3s}.zr-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}[hidden]{display:none!important}</style><script>(function(){try{var t=localStorage.getItem("zr_theme")||"light";document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script><style>
+<html lang="ru"><head><title>Как подобрать редуктор по параметрам — гайд | Завод Редукторов</title><meta name="description" content="Пошаговый разбор подбора редуктора: тип, передаточное число, крутящий момент, монтаж и сервис-фактор. Практический гайд от инженеров завода."><meta name="keywords" content="как подобрать редуктор, передаточное число, крутящий момент, сервис-фактор"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:site_name" content="Завод Редукторов"><meta property="og:title" content="Как подобрать редуктор по параметрам — гайд | Завод Редукторов"><meta property="og:description" content="Пошаговый разбор подбора редуктора: тип, передаточное число, крутящий момент, монтаж и сервис-фактор. Практический гайд от инженеров завода."><meta name="twitter:card" content="summary_large_image"><style id="zr-theme">:root{--bg:#eef0ec;--bg2:#e6e9e3;--surface:#ffffff;--surface2:#f5f6f2;--border:rgba(10,20,28,0.12);--text:#101f2a;--dim:#5a6a75;--accent:#e8500f;--accent-ink:#ffffff;--glow:rgba(232,80,15,0.10);--logo-filter:brightness(0) saturate(0) opacity(.85);--brand-filter:brightness(0) opacity(.55);--good:#12915f;--bad:#c33b3b;}html[data-theme="dark"]{--bg:#0a1219;--bg2:#0d1a24;--surface:#12212d;--surface2:#182b39;--border:rgba(255,255,255,0.10);--text:#eef3f6;--dim:#8ea0ad;--accent:#ff5a1f;--accent-ink:#0a1219;--glow:rgba(255,90,31,0.16);--logo-filter:none;--brand-filter:brightness(0) invert(1) opacity(.72);--good:#22c58b;--bad:#e05252;}#__bundler_err,#__bundler_loading,#__bundler_thumbnail{display:none!important}.zr-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);z-index:9999;background:var(--accent);color:var(--accent-ink);font:600 14px/1.3 Archivo,system-ui,sans-serif;padding:13px 20px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.3s}.zr-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}[hidden]{display:none!important}</style><script>(function(){try{var t=localStorage.getItem("zr_theme")||"light";document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script><style>
     .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
       border:1px solid color-mix(in srgb,currentColor 50%,transparent);
       border-radius:2px;box-sizing:border-box;overflow:hidden}
@@ -55,7 +55,7 @@
   font-weight: 400;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0efc2959-dbd2-4ff4-a14e-1fb657becab8") format('woff2');
+  src: url("blob:http://localhost:8097/3337dc47-86f3-437d-a46c-728a77391644") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -65,7 +65,7 @@
   font-weight: 400;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/d7dc4a0d-054c-4b05-8400-13ca88b5210d") format('woff2');
+  src: url("blob:http://localhost:8097/7b8d73b3-ce86-4b6c-9e2d-5c7648170cc2") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -75,7 +75,7 @@
   font-weight: 400;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/22f18a4a-5c7c-4572-9a7d-503f23332c52") format('woff2');
+  src: url("blob:http://localhost:8097/c80ee754-02e1-4b93-b449-a4611d0df225") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* vietnamese */
@@ -85,7 +85,7 @@
   font-weight: 500;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0efc2959-dbd2-4ff4-a14e-1fb657becab8") format('woff2');
+  src: url("blob:http://localhost:8097/3337dc47-86f3-437d-a46c-728a77391644") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -95,7 +95,7 @@
   font-weight: 500;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/d7dc4a0d-054c-4b05-8400-13ca88b5210d") format('woff2');
+  src: url("blob:http://localhost:8097/7b8d73b3-ce86-4b6c-9e2d-5c7648170cc2") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -105,7 +105,7 @@
   font-weight: 500;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/22f18a4a-5c7c-4572-9a7d-503f23332c52") format('woff2');
+  src: url("blob:http://localhost:8097/c80ee754-02e1-4b93-b449-a4611d0df225") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* vietnamese */
@@ -115,7 +115,7 @@
   font-weight: 600;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0efc2959-dbd2-4ff4-a14e-1fb657becab8") format('woff2');
+  src: url("blob:http://localhost:8097/3337dc47-86f3-437d-a46c-728a77391644") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -125,7 +125,7 @@
   font-weight: 600;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/d7dc4a0d-054c-4b05-8400-13ca88b5210d") format('woff2');
+  src: url("blob:http://localhost:8097/7b8d73b3-ce86-4b6c-9e2d-5c7648170cc2") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -135,7 +135,7 @@
   font-weight: 600;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/22f18a4a-5c7c-4572-9a7d-503f23332c52") format('woff2');
+  src: url("blob:http://localhost:8097/c80ee754-02e1-4b93-b449-a4611d0df225") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* vietnamese */
@@ -145,7 +145,7 @@
   font-weight: 700;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0efc2959-dbd2-4ff4-a14e-1fb657becab8") format('woff2');
+  src: url("blob:http://localhost:8097/3337dc47-86f3-437d-a46c-728a77391644") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -155,7 +155,7 @@
   font-weight: 700;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/d7dc4a0d-054c-4b05-8400-13ca88b5210d") format('woff2');
+  src: url("blob:http://localhost:8097/7b8d73b3-ce86-4b6c-9e2d-5c7648170cc2") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -165,7 +165,7 @@
   font-weight: 700;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/22f18a4a-5c7c-4572-9a7d-503f23332c52") format('woff2');
+  src: url("blob:http://localhost:8097/c80ee754-02e1-4b93-b449-a4611d0df225") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* vietnamese */
@@ -175,7 +175,7 @@
   font-weight: 800;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0efc2959-dbd2-4ff4-a14e-1fb657becab8") format('woff2');
+  src: url("blob:http://localhost:8097/3337dc47-86f3-437d-a46c-728a77391644") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -185,7 +185,7 @@
   font-weight: 800;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/d7dc4a0d-054c-4b05-8400-13ca88b5210d") format('woff2');
+  src: url("blob:http://localhost:8097/7b8d73b3-ce86-4b6c-9e2d-5c7648170cc2") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -195,7 +195,7 @@
   font-weight: 800;
   font-stretch: 100%;
   font-display: swap;
-  src: url("blob:http://localhost:8097/22f18a4a-5c7c-4572-9a7d-503f23332c52") format('woff2');
+  src: url("blob:http://localhost:8097/c80ee754-02e1-4b93-b449-a4611d0df225") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* cyrillic-ext */
@@ -204,7 +204,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("blob:http://localhost:8097/56f51259-ea2a-4400-bcf8-23155ef549df") format('woff2');
+  src: url("blob:http://localhost:8097/d628f304-da99-4fd3-b494-94fdc82cb532") format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 /* cyrillic */
@@ -213,7 +213,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("blob:http://localhost:8097/2afffa7f-35b5-4f13-a55e-b2caf0568a86") format('woff2');
+  src: url("blob:http://localhost:8097/2966cf8e-20ab-48da-93a9-aab691318f03") format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 /* vietnamese */
@@ -222,7 +222,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("blob:http://localhost:8097/3fa6eeaa-0533-4bbd-b5b4-bfc9442b3ad8") format('woff2');
+  src: url("blob:http://localhost:8097/60ad5878-8fb7-4660-b651-33560fc0db68") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -231,7 +231,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("blob:http://localhost:8097/766c5abc-6947-4d7a-9e99-669c606b4ce3") format('woff2');
+  src: url("blob:http://localhost:8097/514d9fcb-c233-4972-a824-b03f9b7d3d18") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -240,7 +240,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("blob:http://localhost:8097/45153918-cbd6-42c7-88a6-7f816d80eb22") format('woff2');
+  src: url("blob:http://localhost:8097/1d5d842d-9d38-4c28-bfec-59846f7a4c53") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* cyrillic-ext */
@@ -249,7 +249,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("blob:http://localhost:8097/9a73c5bf-433b-4a40-9145-d9ad5390e756") format('woff2');
+  src: url("blob:http://localhost:8097/79413652-319d-4ef5-a192-869eeb15f817") format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 /* cyrillic */
@@ -258,7 +258,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("blob:http://localhost:8097/e61b1c26-1774-47cb-8f4b-06e7b7eb9028") format('woff2');
+  src: url("blob:http://localhost:8097/7e909239-d84b-4084-876f-d292399e298d") format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 /* vietnamese */
@@ -267,7 +267,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("blob:http://localhost:8097/21c2cd66-b82b-4dd3-b381-f1c3fd4e7ba6") format('woff2');
+  src: url("blob:http://localhost:8097/980b7748-c804-413a-9198-2f9c1fe9c923") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -276,7 +276,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("blob:http://localhost:8097/160b589a-00ee-4e93-bfae-6423743a94e9") format('woff2');
+  src: url("blob:http://localhost:8097/20b55893-783c-41db-9116-ba244ff8c2dc") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -285,7 +285,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("blob:http://localhost:8097/2dc6ec7d-ccf4-46e9-979c-ed6d061c5049") format('woff2');
+  src: url("blob:http://localhost:8097/f029781a-6a02-42c1-8ad7-dfd6fbb69ec0") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* cyrillic-ext */
@@ -294,7 +294,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0848bad5-1563-4bb8-9532-e3c67a2a43b9") format('woff2');
+  src: url("blob:http://localhost:8097/89d673be-0ad1-4cfc-9316-782f71ac33b6") format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 /* cyrillic */
@@ -303,7 +303,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("blob:http://localhost:8097/f5d51111-e1ae-4624-9754-f1533a0d24cb") format('woff2');
+  src: url("blob:http://localhost:8097/041813a2-ee8c-4d84-a73d-0ad6cdb50419") format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 /* vietnamese */
@@ -312,7 +312,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("blob:http://localhost:8097/b0847eb0-42df-4dbe-a791-949c69efa044") format('woff2');
+  src: url("blob:http://localhost:8097/b2ac86b5-1098-446d-9aac-8b218e2c739b") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -321,7 +321,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("blob:http://localhost:8097/467c965b-f819-4022-851b-f3faac1cdfb7") format('woff2');
+  src: url("blob:http://localhost:8097/11efbcfe-5a85-4d03-86af-94d831505485") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -330,7 +330,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("blob:http://localhost:8097/7afcf73b-530e-4290-bd4e-d339c9d2f65b") format('woff2');
+  src: url("blob:http://localhost:8097/a252e307-4ef6-4b4a-8e24-20ba5a781f31") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* vietnamese */
@@ -339,7 +339,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("blob:http://localhost:8097/268eeaa0-0fe0-43c2-a289-438c5625fecf") format('woff2');
+  src: url("blob:http://localhost:8097/d1874c01-16fb-40d4-8d93-deb13bd53352") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -348,7 +348,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("blob:http://localhost:8097/d9217036-1292-4c9a-8437-1b63f6dd8f0e") format('woff2');
+  src: url("blob:http://localhost:8097/b2b9a1e9-a27d-4eb4-addc-55b9fbfde037") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -357,7 +357,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0135a236-5a13-4e3c-881d-00ee29d78980") format('woff2');
+  src: url("blob:http://localhost:8097/bb97c33c-0dc0-4a00-b49d-adbca94f155f") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* vietnamese */
@@ -366,7 +366,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("blob:http://localhost:8097/268eeaa0-0fe0-43c2-a289-438c5625fecf") format('woff2');
+  src: url("blob:http://localhost:8097/d1874c01-16fb-40d4-8d93-deb13bd53352") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -375,7 +375,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("blob:http://localhost:8097/d9217036-1292-4c9a-8437-1b63f6dd8f0e") format('woff2');
+  src: url("blob:http://localhost:8097/b2b9a1e9-a27d-4eb4-addc-55b9fbfde037") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -384,7 +384,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0135a236-5a13-4e3c-881d-00ee29d78980") format('woff2');
+  src: url("blob:http://localhost:8097/bb97c33c-0dc0-4a00-b49d-adbca94f155f") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* vietnamese */
@@ -393,7 +393,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("blob:http://localhost:8097/268eeaa0-0fe0-43c2-a289-438c5625fecf") format('woff2');
+  src: url("blob:http://localhost:8097/d1874c01-16fb-40d4-8d93-deb13bd53352") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -402,7 +402,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("blob:http://localhost:8097/d9217036-1292-4c9a-8437-1b63f6dd8f0e") format('woff2');
+  src: url("blob:http://localhost:8097/b2b9a1e9-a27d-4eb4-addc-55b9fbfde037") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -411,7 +411,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0135a236-5a13-4e3c-881d-00ee29d78980") format('woff2');
+  src: url("blob:http://localhost:8097/bb97c33c-0dc0-4a00-b49d-adbca94f155f") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* vietnamese */
@@ -420,7 +420,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("blob:http://localhost:8097/268eeaa0-0fe0-43c2-a289-438c5625fecf") format('woff2');
+  src: url("blob:http://localhost:8097/d1874c01-16fb-40d4-8d93-deb13bd53352") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -429,7 +429,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("blob:http://localhost:8097/d9217036-1292-4c9a-8437-1b63f6dd8f0e") format('woff2');
+  src: url("blob:http://localhost:8097/b2b9a1e9-a27d-4eb4-addc-55b9fbfde037") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -438,7 +438,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("blob:http://localhost:8097/0135a236-5a13-4e3c-881d-00ee29d78980") format('woff2');
+  src: url("blob:http://localhost:8097/bb97c33c-0dc0-4a00-b49d-adbca94f155f") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 </style><style>
@@ -448,10 +448,7 @@
   ::selection { background: #ff5a1f; color: #0a1219; }
   @media (max-width:1020px){
     .m1{grid-template-columns:1fr !important;}
-    .m2{grid-template-columns:repeat(2,1fr) !important;}
-  }
-  @media (max-width:620px){
-    .s1{grid-template-columns:1fr !important;}
+    .mstat{position:static !important;}
   }
 
 @media (max-width:1020px){
@@ -562,137 +559,164 @@
   </div></div>
 
   <div style="max-width: 1280px; width: 100%; margin: 0px auto; padding: 26px 24px 64px; flex: 1 1 0%;">
-    <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: var(--dim); display: flex; gap: 8px; align-items: center; margin-bottom: 14px;">
+    <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: var(--dim); display: flex; gap: 8px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
       <a href="index.html" style="color: var(--dim); text-decoration: none;">Главная</a>
       <span style="opacity: 0.5;">/</span>
-      <span style="color: var(--text);">Блог</span>
-    </div>
-    <h1 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 700; font-size: clamp(26px, 3vw, 38px); letter-spacing: -0.02em; margin: 0px 0px 8px; color: var(--text);">Инженерный блог</h1>
-    <p style="color: var(--dim); font-size: 15.5px; max-width: 600px; margin: 0px 0px 26px;">Подбор, эксплуатация и импортозамещение редукторов — пишут инженеры завода, без воды.</p>
-
-    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px;">
-      
-        <button style="cursor: pointer; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12.5px; padding: 8px 14px; border-radius: 100px; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink);"><span class="sc-interp">Все</span></button>
-      
-        <button style="cursor: pointer; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12.5px; padding: 8px 14px; border-radius: 100px; border: 1px solid var(--border); background: var(--surface); color: var(--dim);"><span class="sc-interp">Подбор</span></button>
-      
-        <button style="cursor: pointer; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12.5px; padding: 8px 14px; border-radius: 100px; border: 1px solid var(--border); background: var(--surface); color: var(--dim);"><span class="sc-interp">Эксплуатация</span></button>
-      
-        <button style="cursor: pointer; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12.5px; padding: 8px 14px; border-radius: 100px; border: 1px solid var(--border); background: var(--surface); color: var(--dim);"><span class="sc-interp">Импортозамещение</span></button>
-      
-        <button style="cursor: pointer; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12.5px; padding: 8px 14px; border-radius: 100px; border: 1px solid var(--border); background: var(--surface); color: var(--dim);"><span class="sc-interp">Производство</span></button>
-      
+      <a href="blog.html" style="color: var(--dim); text-decoration: none;">Блог</a>
+      <span style="opacity: 0.5;">/</span>
+      <span style="color: var(--text);">Кросс-таблица EVL</span>
     </div>
 
-    
-    <a href="article.html" class="m1 scp2" style="text-decoration: none; display: grid; grid-template-columns: 1.2fr 1fr; gap: 0px; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; margin-bottom: 22px;">
-      <div style="padding: 34px; display: flex; flex-direction: column; gap: 14px;">
-        <div style="display: flex; gap: 10px; align-items: center;">
+    <div class="m1" style="display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: start;">
+
+      
+      <article style="max-width: 760px;">
+        <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 18px; flex-wrap: wrap;">
           <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10.5px; padding: 4px 9px; border-radius: 6px; background: var(--accent,#ff5a1f); color: var(--accent-ink);">ИМПОРТОЗАМЕЩЕНИЕ</span>
-          <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; color: var(--dim);">12 июня 2026 · 9 мин</span>
+          <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: var(--dim);">12 июня 2026 · 9 мин · инженер завода</span>
         </div>
-        <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 28px); line-height: 1.15; letter-spacing: -0.015em; color: var(--text);">Как заменить SEW R-серии без переделки рамы: полная кросс-таблица EVL</div>
-        <p style="color: var(--dim); font-size: 14.5px; line-height: 1.6; margin: 0px;">Разбираем присоединительные размеры R37–R167 и показываем, какой EVL встаёт на каждое посадочное место. С чертежами и допусками.</p>
-        <span style="margin-top: auto; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; color: var(--accent,#ff5a1f);">Читать статью →</span>
-      </div>
-      <div style="background: radial-gradient(80% 80% at 50% 40%, var(--surface2), var(--surface)); border-left: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 30px; min-height: 280px;">
-        <img src="./assets/cat_coaxial.webp" alt="" style="max-width: 85%; max-height: 240px; object-fit: contain; filter: drop-shadow(rgba(0, 0, 0, 0.45) 0px 20px 34px);">
-      </div>
-    </a>
+        <h1 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 700; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.1; letter-spacing: -0.02em; margin: 0px 0px 22px; color: var(--text);">Как заменить SEW R-серии без переделки рамы: полная кросс-таблица EVL</h1>
 
-    
-    <div class="m2 s1" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;">
-      
-        <a href="article.html" class="scp2" style="text-decoration: none; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
-          <div style="aspect-ratio: 16 / 8.5; background: radial-gradient(80% 90% at 50% 40%, var(--surface2), var(--surface)); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 18px;">
-            <img src="./assets/cat_worm.webp" alt="" style="max-height: 100%; max-width: 60%; object-fit: contain; filter: drop-shadow(rgba(0, 0, 0, 0.35) 0px 10px 16px);">
-          </div>
-          <div style="padding: 18px; display: flex; flex-direction: column; gap: 10px; flex: 1 1 0%;">
-            <div style="display: flex; gap: 9px; align-items: center;">
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; padding: 3px 8px; border-radius: 6px; background: var(--surface2); color: var(--accent,#ff5a1f); border: 1px solid var(--border);"><span class="sc-interp">ПОДБОР</span></span>
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim);"><span class="sc-interp">28 мая · 7 мин</span></span>
+        <div style="background: radial-gradient(80% 80% at 50% 40%, var(--surface2), var(--surface)); border: 1px solid var(--border); border-radius: 18px; display: flex; align-items: center; justify-content: center; padding: 36px; margin-bottom: 28px;">
+          <img src="./assets/prod-d2.webp" alt="Мотор-редуктор EVL" style="max-width: 70%; max-height: 300px; object-fit: contain; filter: drop-shadow(rgba(0, 0, 0, 0.45) 0px 20px 34px);">
+        </div>
+
+        <p style="font-size: 16.5px; line-height: 1.75; color: var(--text); margin: 0px 0px 18px;">Когда останавливается привод с редуктором SEW R-серии, у механика два пути: ждать оригинал несколько месяцев или поставить аналог. Второй путь пугает одним — «а встанет ли на раму?». Отвечаем: встанет, если аналог совпадает по четырём присоединительным размерам.</p>
+
+        <h2 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.015em; margin: 32px 0px 14px; color: var(--text);">Что должно совпасть</h2>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px;">
+          
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;">
+              <span style="color: var(--accent,#ff5a1f); flex-shrink: 0; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;"><span class="sc-interp">01</span></span>
+              <div><span style="font-weight: 600; color: var(--text); font-size: 14.5px;"><span class="sc-interp">Межосевое расстояние</span></span><span style="display: block; color: var(--dim); font-size: 13.5px; margin-top: 3px; line-height: 1.5;"><span class="sc-interp">Определяет, встанет ли выходной вал на ту же высоту относительно лап.</span></span></div>
             </div>
-            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.25; color: var(--text);"><span class="sc-interp">Червячный или цилиндрический: что выбрать для конвейера</span></div>
-            <p style="color: var(--dim); font-size: 13.5px; line-height: 1.55; margin: 0px; flex: 1 1 0%;"><span class="sc-interp">Сравниваем КПД, нагрев и цену владения на горизонте 5 лет — с расчётом на реальном примере.</span></p>
-            <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: var(--accent,#ff5a1f);">Читать →</span>
-          </div>
-        </a>
-      
-        <a href="article.html" class="scp2" style="text-decoration: none; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
-          <div style="aspect-ratio: 16 / 8.5; background: radial-gradient(80% 90% at 50% 40%, var(--surface2), var(--surface)); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 18px;">
-            <img src="./assets/cat_cylindrical.webp" alt="" style="max-height: 100%; max-width: 60%; object-fit: contain; filter: drop-shadow(rgba(0, 0, 0, 0.35) 0px 10px 16px);">
-          </div>
-          <div style="padding: 18px; display: flex; flex-direction: column; gap: 10px; flex: 1 1 0%;">
-            <div style="display: flex; gap: 9px; align-items: center;">
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; padding: 3px 8px; border-radius: 6px; background: var(--surface2); color: var(--accent,#ff5a1f); border: 1px solid var(--border);"><span class="sc-interp">ЭКСПЛУАТАЦИЯ</span></span>
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim);"><span class="sc-interp">15 мая · 5 мин</span></span>
+          
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;">
+              <span style="color: var(--accent,#ff5a1f); flex-shrink: 0; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;"><span class="sc-interp">02</span></span>
+              <div><span style="font-weight: 600; color: var(--text); font-size: 14.5px;"><span class="sc-interp">Диаметр и вылет выходного вала</span></span><span style="display: block; color: var(--dim); font-size: 13.5px; margin-top: 3px; line-height: 1.5;"><span class="sc-interp">Вал должен войти в штатную муфту или звёздочку без переточки.</span></span></div>
             </div>
-            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.25; color: var(--text);"><span class="sc-interp">Почему греется редуктор: 6 причин и что делать</span></div>
-            <p style="color: var(--dim); font-size: 13.5px; line-height: 1.55; margin: 0px; flex: 1 1 0%;"><span class="sc-interp">От перегруза и неправильного масла до несоосности валов. Чек-лист диагностики за 15 минут.</span></p>
-            <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: var(--accent,#ff5a1f);">Читать →</span>
-          </div>
-        </a>
-      
-        <a href="article.html" class="scp2" style="text-decoration: none; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
-          <div style="aspect-ratio: 16 / 8.5; background: radial-gradient(80% 90% at 50% 40%, var(--surface2), var(--surface)); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 18px;">
-            <img src="./assets/cat_variator.webp" alt="" style="max-height: 100%; max-width: 60%; object-fit: contain; filter: drop-shadow(rgba(0, 0, 0, 0.35) 0px 10px 16px);">
-          </div>
-          <div style="padding: 18px; display: flex; flex-direction: column; gap: 10px; flex: 1 1 0%;">
-            <div style="display: flex; gap: 9px; align-items: center;">
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; padding: 3px 8px; border-radius: 6px; background: var(--surface2); color: var(--accent,#ff5a1f); border: 1px solid var(--border);"><span class="sc-interp">ПОДБОР</span></span>
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim);"><span class="sc-interp">30 апреля · 8 мин</span></span>
+          
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;">
+              <span style="color: var(--accent,#ff5a1f); flex-shrink: 0; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;"><span class="sc-interp">03</span></span>
+              <div><span style="font-weight: 600; color: var(--text); font-size: 14.5px;"><span class="sc-interp">Крепёжные отверстия</span></span><span style="display: block; color: var(--dim); font-size: 13.5px; margin-top: 3px; line-height: 1.5;"><span class="sc-interp">Разметка лап или фланца — до миллиметра, иначе сверлить раму.</span></span></div>
             </div>
-            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.25; color: var(--text);"><span class="sc-interp">Читаем шильдик правильно: подбор аналога по маркировке</span></div>
-            <p style="color: var(--dim); font-size: 13.5px; line-height: 1.55; margin: 0px; flex: 1 1 0%;"><span class="sc-interp">Что означают буквы и цифры на табличках SEW, NORD и Bonfiglioli — и как не ошибиться с i.</span></p>
-            <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: var(--accent,#ff5a1f);">Читать →</span>
-          </div>
-        </a>
-      
-        <a href="article.html" class="scp2" style="text-decoration: none; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
-          <div style="aspect-ratio: 16 / 8.5; background: radial-gradient(80% 90% at 50% 40%, var(--surface2), var(--surface)); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 18px;">
-            <img src="./assets/cat_flat.webp" alt="" style="max-height: 100%; max-width: 60%; object-fit: contain; filter: drop-shadow(rgba(0, 0, 0, 0.35) 0px 10px 16px);">
-          </div>
-          <div style="padding: 18px; display: flex; flex-direction: column; gap: 10px; flex: 1 1 0%;">
-            <div style="display: flex; gap: 9px; align-items: center;">
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; padding: 3px 8px; border-radius: 6px; background: var(--surface2); color: var(--accent,#ff5a1f); border: 1px solid var(--border);"><span class="sc-interp">ПРОИЗВОДСТВО</span></span>
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim);"><span class="sc-interp">18 апреля · 6 мин</span></span>
+          
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;">
+              <span style="color: var(--accent,#ff5a1f); flex-shrink: 0; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;"><span class="sc-interp">04</span></span>
+              <div><span style="font-weight: 600; color: var(--text); font-size: 14.5px;"><span class="sc-interp">Фланец двигателя IEC</span></span><span style="display: block; color: var(--dim); font-size: 13.5px; margin-top: 3px; line-height: 1.5;"><span class="sc-interp">Чтобы использовать существующий двигатель или заменить его серийным.</span></span></div>
             </div>
-            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.25; color: var(--text);"><span class="sc-interp">Зачем зубьям цементация: 56–62 HRC простыми словами</span></div>
-            <p style="color: var(--dim); font-size: 13.5px; line-height: 1.55; margin: 0px; flex: 1 1 0%;"><span class="sc-interp">Как термообработка влияет на ресурс передачи и почему «сырая» шестерня умирает за полгода.</span></p>
-            <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: var(--accent,#ff5a1f);">Читать →</span>
+          
+        </div>
+
+        <h2 style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.015em; margin: 32px 0px 14px; color: var(--text);">Кросс-таблица SEW → EVL</h2>
+        <div style="border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 22px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; background: var(--surface2); padding: 12px 16px; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim); letter-spacing: 0.05em;">
+            <span>SEW</span><span>EVL</span><span>МОМЕНТ</span><span>ЦЕНА EVL</span>
           </div>
-        </a>
-      
-        <a href="article.html" class="scp2" style="text-decoration: none; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
-          <div style="aspect-ratio: 16 / 8.5; background: radial-gradient(80% 90% at 50% 40%, var(--surface2), var(--surface)); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 18px;">
-            <img src="./assets/cat_bevel.webp" alt="" style="max-height: 100%; max-width: 60%; object-fit: contain; filter: drop-shadow(rgba(0, 0, 0, 0.35) 0px 10px 16px);">
-          </div>
-          <div style="padding: 18px; display: flex; flex-direction: column; gap: 10px; flex: 1 1 0%;">
-            <div style="display: flex; gap: 9px; align-items: center;">
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; padding: 3px 8px; border-radius: 6px; background: var(--surface2); color: var(--accent,#ff5a1f); border: 1px solid var(--border);"><span class="sc-interp">ИМПОРТОЗАМЕЩЕНИЕ</span></span>
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim);"><span class="sc-interp">2 апреля · 10 мин</span></span>
+          
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--surface); font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;">
+              <span style="color: var(--dim);"><span class="sc-interp">R37</span></span>
+              <span style="color: var(--accent,#ff5a1f); font-weight: 600;"><span class="sc-interp">EVL 37</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">200 Н·м</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">18 400</span> ₽</span>
             </div>
-            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.25; color: var(--text);"><span class="sc-interp">Кейс: замена 14 приводов NORD на пищевом производстве</span></div>
-            <p style="color: var(--dim); font-size: 13.5px; line-height: 1.55; margin: 0px; flex: 1 1 0%;"><span class="sc-interp">Как меняли парк без остановки линии: график, посадочные места, что пошло не по плану.</span></p>
-            <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: var(--accent,#ff5a1f);">Читать →</span>
-          </div>
-        </a>
-      
-        <a href="article.html" class="scp2" style="text-decoration: none; background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
-          <div style="aspect-ratio: 16 / 8.5; background: radial-gradient(80% 90% at 50% 40%, var(--surface2), var(--surface)); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 18px;">
-            <img src="./assets/cat_coaxial.webp" alt="" style="max-height: 100%; max-width: 60%; object-fit: contain; filter: drop-shadow(rgba(0, 0, 0, 0.35) 0px 10px 16px);">
-          </div>
-          <div style="padding: 18px; display: flex; flex-direction: column; gap: 10px; flex: 1 1 0%;">
-            <div style="display: flex; gap: 9px; align-items: center;">
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10px; padding: 3px 8px; border-radius: 6px; background: var(--surface2); color: var(--accent,#ff5a1f); border: 1px solid var(--border);"><span class="sc-interp">ЭКСПЛУАТАЦИЯ</span></span>
-              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim);"><span class="sc-interp">20 марта · 4 мин</span></span>
+          
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--surface); font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;">
+              <span style="color: var(--dim);"><span class="sc-interp">R47</span></span>
+              <span style="color: var(--accent,#ff5a1f); font-weight: 600;"><span class="sc-interp">EVL 47</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">320 Н·м</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">24 900</span> ₽</span>
             </div>
-            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.25; color: var(--text);"><span class="sc-interp">Какое масло заливать в редуктор: таблица по типам и температурам</span></div>
-            <p style="color: var(--dim); font-size: 13.5px; line-height: 1.55; margin: 0px; flex: 1 1 0%;"><span class="sc-interp">CLP 220 или 320? Минералка или синтетика? Интервалы замены для режимов S1–S6.</span></p>
-            <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 12px; color: var(--accent,#ff5a1f);">Читать →</span>
+          
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--surface); font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;">
+              <span style="color: var(--dim);"><span class="sc-interp">R57</span></span>
+              <span style="color: var(--accent,#ff5a1f); font-weight: 600;"><span class="sc-interp">EVL 57</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">450 Н·м</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">31 200</span> ₽</span>
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--surface); font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;">
+              <span style="color: var(--dim);"><span class="sc-interp">R77</span></span>
+              <span style="color: var(--accent,#ff5a1f); font-weight: 600;"><span class="sc-interp">EVL 77</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">820 Н·м</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">56 800</span> ₽</span>
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--surface); font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;">
+              <span style="color: var(--dim);"><span class="sc-interp">R97</span></span>
+              <span style="color: var(--accent,#ff5a1f); font-weight: 600;"><span class="sc-interp">EVL 187</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">1 280 Н·м</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">112 000</span> ₽</span>
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--surface); font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;">
+              <span style="color: var(--dim);"><span class="sc-interp">R107</span></span>
+              <span style="color: var(--accent,#ff5a1f); font-weight: 600;"><span class="sc-interp">EVL 197</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">1 500 Н·м</span></span>
+              <span style="color: var(--text);"><span class="sc-interp">128 000</span> ₽</span>
+            </div>
+          
+        </div>
+
+        <p style="font-size: 16px; line-height: 1.75; color: var(--text); margin: 0px 0px 18px;">Все типоразмеры EVL из таблицы повторяют присоединительные размеры соответствующих R-серий: узел ставится на штатные отверстия, вал входит в ту же муфту, двигатель — тот же фланец IEC. Если у вас нестандартное исполнение (усиленный вал, тормоз, спецлак) — это решается опциями при заказе.</p>
+
+        <div style="background: linear-gradient(120% 100% at 90% 0%, var(--glow), transparent), var(--surface,#12212d); border: 1px solid var(--accent,#ff5a1f); border-radius: 16px; padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 30px;">
+          <div>
+            <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 17px; color: var(--text);">Нужна замена SEW прямо сейчас?</div>
+            <div style="color: var(--dim); font-size: 13.5px; margin-top: 4px;">Пришлите фото шильдика — подтвердим аналог и цену за 15 минут.</div>
           </div>
-        </a>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="podbor.html" style="text-decoration: none; background: var(--accent,#ff5a1f); color: var(--accent-ink); font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 14px; padding: 12px 22px; border-radius: 11px;">Подобрать аналог</a>
+            <a href="calculator.html" style="text-decoration: none; background: var(--surface2); color: var(--text); border: 1px solid var(--border); font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 14px; padding: 12px 22px; border-radius: 11px;">Рассчитать цену</a>
+          </div>
+        </div>
+      </article>
+
       
+      <aside class="mstat" style="position: sticky; top: 96px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 16px; padding: 20px;">
+          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim); letter-spacing: 0.05em; margin-bottom: 14px;">УПОМЯНУТЫЕ ТОВАРЫ</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            
+              <a href="product.html" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                <span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px; background: var(--surface2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 7px;"><img src="./assets/cat_coaxial.webp" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain;"></span>
+                <span style="flex: 1 1 0%; min-width: 0px;"><span style="display: block; font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 13.5px; color: var(--text); line-height: 1.2;"><span class="sc-interp">EVL 197 · аналог R107</span></span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; color: var(--accent,#ff5a1f);">от <span class="sc-interp">128 000</span> ₽</span></span>
+              </a>
+            
+              <a href="product.html" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                <span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px; background: var(--surface2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 7px;"><img src="./assets/cat_cylindrical.webp" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain;"></span>
+                <span style="flex: 1 1 0%; min-width: 0px;"><span style="display: block; font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 13.5px; color: var(--text); line-height: 1.2;"><span class="sc-interp">EVL 187 · аналог R97</span></span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; color: var(--accent,#ff5a1f);">от <span class="sc-interp">112 000</span> ₽</span></span>
+              </a>
+            
+              <a href="product.html" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                <span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px; background: var(--surface2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 7px;"><img src="./assets/cat_bevel.webp" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain;"></span>
+                <span style="flex: 1 1 0%; min-width: 0px;"><span style="display: block; font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 13.5px; color: var(--text); line-height: 1.2;"><span class="sc-interp">EVL 77 · аналог R77</span></span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; color: var(--accent,#ff5a1f);">от <span class="sc-interp">56 800</span> ₽</span></span>
+              </a>
+            
+          </div>
+        </div>
+        <div style="background: var(--surface,#12212d); border: 1px solid var(--border); border-radius: 16px; padding: 20px;">
+          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim); letter-spacing: 0.05em; margin-bottom: 14px;">ЧИТАЙТЕ ТАКЖЕ</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            
+              <a href="article.html" style="text-decoration: none; display: block;">
+                <span style="display: block; font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 13.5px; color: var(--text); line-height: 1.3;"><span class="sc-interp">Читаем шильдик правильно: подбор аналога по маркировке</span></span>
+                <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim);"><span class="sc-interp">30 апреля · 8 мин</span></span>
+              </a>
+            
+              <a href="article.html" style="text-decoration: none; display: block;">
+                <span style="display: block; font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 13.5px; color: var(--text); line-height: 1.3;"><span class="sc-interp">Почему греется редуктор: 6 причин и что делать</span></span>
+                <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim);"><span class="sc-interp">15 мая · 5 мин</span></span>
+              </a>
+            
+              <a href="article.html" style="text-decoration: none; display: block;">
+                <span style="display: block; font-family: &quot;Space Grotesk&quot;, sans-serif; font-weight: 600; font-size: 13.5px; color: var(--text); line-height: 1.3;"><span class="sc-interp">Кейс: замена 14 приводов NORD на пищевом производстве</span></span>
+                <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11px; color: var(--dim);"><span class="sc-interp">2 апреля · 10 мин</span></span>
+              </a>
+            
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
 
@@ -711,17 +735,17 @@
         <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; color: var(--dim); letter-spacing: 0.05em; margin-bottom: 14px;"><span class="sc-interp">КАТАЛОГ</span></div>
         <div style="display: flex; flex-direction: column; gap: 9px;">
           
-            <a href="catalog.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Червячные</span></a>
+            <a href="catalog.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Червячные</span></a>
           
-            <a href="catalog.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Цилиндрические</span></a>
+            <a href="catalog.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Цилиндрические</span></a>
           
-            <a href="catalog.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Соосные</span></a>
+            <a href="catalog.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Соосные</span></a>
           
-            <a href="catalog.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Цилиндро-конические</span></a>
+            <a href="catalog.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Цилиндро-конические</span></a>
           
-            <a href="catalog.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Планетарные</span></a>
+            <a href="catalog.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Планетарные</span></a>
           
-            <a href="catalog.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Весь каталог →</span></a>
+            <a href="catalog.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Весь каталог →</span></a>
           
         </div>
       </div>
@@ -730,17 +754,17 @@
         <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; color: var(--dim); letter-spacing: 0.05em; margin-bottom: 14px;"><span class="sc-interp">РАЗДЕЛЫ</span></div>
         <div style="display: flex; flex-direction: column; gap: 9px;">
           
-            <a href="podbor.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Подбор редуктора</span></a>
+            <a href="podbor.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Подбор редуктора</span></a>
           
-            <a href="calculator.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Калькулятор цены</span></a>
+            <a href="calculator.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Калькулятор цены</span></a>
           
-            <a href="cabinet.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Кабинет клиента</span></a>
+            <a href="cabinet.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Кабинет клиента</span></a>
           
-            <a href="blog.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Импортозамещение</span></a>
+            <a href="blog.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Импортозамещение</span></a>
           
-            <a href="blog.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Блог</span></a>
+            <a href="blog.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Блог</span></a>
           
-            <a href="cart.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Корзина</span></a>
+            <a href="cart.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Корзина</span></a>
           
         </div>
       </div>
@@ -749,15 +773,15 @@
         <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 11.5px; color: var(--dim); letter-spacing: 0.05em; margin-bottom: 14px;"><span class="sc-interp">КОМПАНИЯ</span></div>
         <div style="display: flex; flex-direction: column; gap: 9px;">
           
-            <a href="about.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">О заводе</span></a>
+            <a href="about.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">О заводе</span></a>
           
-            <a href="about.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Сертификаты</span></a>
+            <a href="about.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Сертификаты</span></a>
           
-            <a href="about.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Контакты</span></a>
+            <a href="about.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Контакты</span></a>
           
-            <a href="about.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Оплата и реквизиты</span></a>
+            <a href="about.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Оплата и реквизиты</span></a>
           
-            <a href="about.html" class="scp3" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Гарантия</span></a>
+            <a href="about.html" class="scp2" style="text-decoration: none; color: var(--text); font-size: 13.5px;"><span class="sc-interp">Гарантия</span></a>
           
         </div>
       </div>

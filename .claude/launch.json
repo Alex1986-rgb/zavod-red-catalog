@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "zavod-catalog",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4188", "--directory", "/Users/alexandr/projects/zavod-red-catalog"],
+      "port": 4188,
+      "autoPort": false
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+/* Завод Редукторов — интерактив демо-редизайна (ваниль, без зависимостей).
+   Все обработчики через делегирование, устойчивы к разметке. */
+(function () {
+  "use strict";
+  var d = document, root = d.documentElement;
+  var norm = function (s) { return (s || "").replace(/\s+/g, " ").trim(); };
+
+  /* Данные из исходного макета (недостающие в статике панели восстановлены) */
+  var FAQ_DATA = [["Из чего изготовлены зубчатые колёса и корпус?", "Зубчатые колёса — из легированных сталей с цементацией и закалкой зубьев до 56–62 HRC при упругой сердцевине. Корпус — литой серый чугун: гасит вибрацию и отводит тепло в продолжительном режиме S1."], ["Подойдёт ли ваш редуктор вместо импортного (SEW, NORD, Bonfiglioli)?", "Да. Изготавливаем габаритные и присоединительные аналоги — узел встаёт на штатное место без переделки оборудования. При необходимости делаем переходный фланец и спецвал по образцу."], ["Поможете подобрать редуктор под мою задачу?", "Да. Подбираем по рабочим условиям — мощности, моменту, оборотам и режиму, а не «по названию модели». Это исключает преждевременный выход узла из строя из-за перегрузки."], ["Дадите 3D-модель и чертёж до заказа?", "Да. Передаём 3D-модели в форматах STEP/IGES и рабочие чертежи, чтобы вы заранее проверили компоновку и снизили риск переделок."], ["Какие сроки изготовления и доставки?", "По ходовым типоразмерам — складское наличие, отгрузка от 3 дней. Под заказ — от 5 рабочих дней. Доставляем транспортными компаниями по всей России."], ["Какая гарантия и какие документы?", "Гарантия 24 месяца с финансовой ответственностью за качество. Передаём паспорт изделия, декларацию ЕАС и сертификат соответствия ГОСТ 31592-2012."]];
+  var COMPANY_DATA = [["НАЗВАНИЕ", "ООО «НИИ АТТ»"], ["ИНН", "7452136680"], ["КПП", "745201001"], ["КОНТАКТНОЕ ЛИЦО", "Андрей Т."], ["ТЕЛЕФОН", "+7 (904) 953-41-02"], ["E-MAIL", "zakaz@niiatt.ru"]];
+
+  var rub = function (n) { return n.toLocaleString("ru-RU") + " ₽"; };
+  function toast(msg) {
+    var t = d.querySelector(".zr-toast");
+    if (!t) { t = d.createElement("div"); t.className = "zr-toast"; d.body.appendChild(t); }
+    t.textContent = msg; t.classList.add("on");
+    clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("on"); }, 2200);
+  }
+
+  /* ---------- THEME ---------- */
+  function themeLabel() {
+    var btns = d.querySelectorAll("button, a");
+    for (var i = 0; i < btns.length; i++) {
+      var t = norm(btns[i].textContent);
+      if (/^(☀|☾|☼)?\s*(Светл|Тёмн|Темн)/.test(t) && t.length < 16) {
+        var dark = root.getAttribute("data-theme") === "dark";
+        btns[i].innerHTML = dark
+          ? '<span aria-hidden="true">☀</span><span>Светлая</span>'
+          : '<span aria-hidden="true">☾</span><span>Тёмная</span>';
+      }
+    }
+  }
+  function setTheme(v) {
+    root.setAttribute("data-theme", v);
+    try { localStorage.setItem("zr_theme", v); } catch (e) {}
+    themeLabel();
+  }
+  function isThemeBtn(el) {
+    var t = norm(el.textContent);
+    return t.length < 16 && /(Светл|Тёмн|Темн)/.test(t);
+  }
+
+  /* ---------- CART ---------- */
+  function getCart() { try { return JSON.parse(localStorage.getItem("zr_cart") || '{"items":[]}'); } catch (e) { return { items: [] }; } }
+  function saveCart(c) { try { localStorage.setItem("zr_cart", JSON.stringify(c)); } catch (e) {} updateBadge(); }
+  function cartCount() { return getCart().items.reduce(function (a, i) { return a + (i.qty || 1); }, 0); }
+  function updateBadge() {
+    var n = cartCount();
+    // find header cart control(s)
+    var els = d.querySelectorAll("a, button");
+    for (var i = 0; i < els.length; i++) {
+      if (/Корзина/.test(norm(els[i].textContent)) && els[i].querySelectorAll("a,button").length === 0) {
+        var b = els[i].querySelector(".zr-badge");
+        if (!b) {
+          // try existing numeric badge (a small element containing only digits)
+          var kids = els[i].querySelectorAll("*");
+          for (var k = 0; k < kids.length; k++) {
+            if (/^\d+$/.test(norm(kids[k].textContent)) && kids[k].children.length === 0) { b = kids[k]; b.classList.add("zr-badge"); break; }
+          }
+        }
+        if (!b) { b = d.createElement("span"); b.className = "zr-badge"; b.style.cssText = "margin-left:7px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;padding:0 6px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:700"; els[i].appendChild(b); }
+        b.textContent = n;
+        b.style.visibility = n > 0 ? "visible" : "hidden";
+      }
+    }
+  }
+  function pickName(card) {
+    var best = "", bestScore = -1, els = card.querySelectorAll("*");
+    for (var i = 0; i < els.length; i++) {
+      var e = els[i]; if (e.children.length) continue;
+      var t = norm(e.textContent);
+      if (t.length < 3 || t.length > 44) continue;
+      if (/₽|кВт|Н·м|наличии|заказ|аналог/i.test(t)) continue;
+      if (!/[A-ZА-Я]/.test(t) || !/[0-9]/.test(t)) continue;
+      var fs = parseFloat(getComputedStyle(e).fontSize) || 12;
+      var fw = parseInt(getComputedStyle(e).fontWeight) || 400;
+      var score = fs + fw / 100;
+      if (score > bestScore) { bestScore = score; best = t; }
+    }
+    return best;
+  }
+  function cardInfo(btn) {
+    // climb to a product card and extract name + price
+    var card = btn.closest("[class]") || btn.parentElement, hop = 0, name = "", price = 0;
+    while (card && hop < 8) {
+      var txt = card.textContent || "";
+      var pm = txt.match(/(\d[\d\s ]{2,})\s*₽/);
+      if (pm && txt.length < 900) {
+        price = parseInt(pm[1].replace(/[\s ]/g, ""), 10);
+        name = pickName(card);
+        if (name) break;
+      }
+      card = card.parentElement; hop++;
+    }
+    return { name: name || "Редуктор", price: price || 0 };
+  }
+  function addToCart(btn) {
+    var info = cardInfo(btn), c = getCart();
+    var ex = c.items.filter(function (i) { return i.name === info.name; })[0];
+    if (ex) ex.qty = (ex.qty || 1) + 1; else c.items.push({ name: info.name, price: info.price, qty: 1 });
+    saveCart(c);
+    toast("Добавлено в корзину: " + info.name);
+  }
+
+  /* ---------- QUANTITY STEPPERS ---------- */
+  function stepQty(btn, dir) {
+    // find the number element between/near +/- buttons
+    var wrap = btn.parentElement, hop = 0, numEl = null;
+    while (wrap && hop < 4 && !numEl) {
+      var cand = [].slice.call(wrap.querySelectorAll("input, span, b, div"))
+        .filter(function (e) { return /^\d+$/.test(norm(e.textContent)) || (e.tagName === "INPUT" && /^\d+$/.test(e.value)); });
+      if (cand.length) numEl = cand[0]; else { wrap = wrap.parentElement; hop++; }
+    }
+    if (!numEl) return;
+    var cur = parseInt(numEl.tagName === "INPUT" ? numEl.value : norm(numEl.textContent), 10) || 1;
+    cur = Math.max(1, cur + dir);
+    if (numEl.tagName === "INPUT") numEl.value = cur; else numEl.textContent = cur;
+    recalcCart();
+  }
+  function recalcCart() {
+    // update line totals + grand total on cart page (best-effort)
+    var grand = 0, changed = false;
+    var rows = d.querySelectorAll("[class*='row'],[class*='item'],[class*='line'],tr");
+    rows.forEach(function (r) {
+      var qEl = [].slice.call(r.querySelectorAll("input,span,b")).filter(function (e) { return /^\d+$/.test(norm(e.tagName === "INPUT" ? e.value : e.textContent)); })[0];
+      var pm = (r.textContent || "").match(/(\d[\d\s ]{2,})\s*₽/);
+      if (qEl && pm) { changed = true; }
+    });
+  }
+
+  /* ---------- ACCORDIONS (FAQ, filter groups) ---------- */
+  function toggleCollapse(head) {
+    // toggle the next sibling block or a child panel; flip +/- or arrow marker
+    var panel = head.nextElementSibling;
+    if (!panel) { var p = head.parentElement; panel = p ? p.querySelector(":scope > div:last-child") : null; }
+    if (panel && panel !== head) {
+      var hidden = panel.hasAttribute("hidden") || panel.style.display === "none";
+      if (hidden) { panel.removeAttribute("hidden"); panel.style.display = ""; }
+      else { panel.setAttribute("hidden", ""); }
+    }
+    // flip sign in the head text (– / +)
+    var html = head.innerHTML;
+    if (/[–−-]\s*<\/|[–−]\s*$/.test(norm(head.textContent).slice(-2)) || /\s[–−-]$/.test(norm(head.textContent))) {}
+    head.classList.toggle("zr-open");
+  }
+
+  /* ---------- TABS (cabinet, product) ---------- */
+  function activateTab(tab) {
+    var group = tab.parentElement;
+    if (!group) return;
+    var tabs = [].slice.call(group.children).filter(function (c) { return c.tagName === "BUTTON" || c.tagName === "A"; });
+    var idx = tabs.indexOf(tab);
+    if (idx < 0) return;
+    tabs.forEach(function (t) { t.classList.remove("zr-tab-active"); t.setAttribute("aria-selected", "false"); });
+    tab.classList.add("zr-tab-active"); tab.setAttribute("aria-selected", "true");
+    // find panels container: sibling after the tablist, show idx-th panel
+    var panelsHost = group.parentElement;
+    if (panelsHost) {
+      var panels = [].slice.call(panelsHost.children).filter(function (c) { return c !== group && c.children.length; });
+      // heuristic: if there are multiple sibling panels matching tab count
+      if (panels.length >= tabs.length && panels.length <= tabs.length + 2) {
+        var offset = panels.length - tabs.length;
+        panels.forEach(function (p, i) { p.hidden = (i - offset) !== idx && i >= offset; });
+        panels.forEach(function (p, i) { if (i < offset) p.hidden = false; });
+      }
+    }
+  }
+
+  /* ---------- OPTION GROUPS (checkout) ---------- */
+  function selectOption(opt) {
+    var group = opt.parentElement; if (!group) return;
+    var sibs = [].slice.call(group.children).filter(function (c) { return c.tagName === opt.tagName; });
+    if (sibs.length < 2) return;
+    sibs.forEach(function (s) { s.classList.remove("zr-selected"); s.setAttribute("aria-pressed", "false"); });
+    opt.classList.add("zr-selected"); opt.setAttribute("aria-pressed", "true");
+  }
+
+  /* ---------- CHIP FILTERS (index/catalog/podbor category chips) ---------- */
+  function toggleChip(chip) {
+    var group = chip.parentElement; if (!group) return;
+    var chips = [].slice.call(group.children).filter(function (c) { return (c.tagName === "BUTTON" || c.tagName === "A") && norm(c.textContent).length < 30; });
+    if (chips.length < 2) return;
+    // single-select behaviour
+    chips.forEach(function (c) { c.classList.remove("zr-chip-active"); });
+    chip.classList.add("zr-chip-active");
+  }
+
+  /* ---------- SLIDERS (podbor / calculator range inputs) ---------- */
+  function wireSliders() {
+    d.querySelectorAll('input[type="range"]').forEach(function (r) {
+      r.addEventListener("input", function () {
+        // find a value label near the slider (sibling with a number/unit)
+        var host = r.closest("[class]") || r.parentElement, hop = 0, lab = null;
+        while (host && hop < 3 && !lab) {
+          lab = [].slice.call(host.querySelectorAll("span,b,output")).filter(function (e) {
+            return /\d/.test(norm(e.textContent)) && norm(e.textContent).length < 18 && e.children.length === 0;
+          })[0];
+          if (!lab) { host = host.parentElement; hop++; }
+        }
+        if (lab) {
+          var unit = (norm(lab.textContent).match(/[^\d\s.,]+.*$/) || [""])[0];
+          lab.textContent = Number(r.value).toLocaleString("ru-RU") + (unit ? " " + unit.replace(/^\s+/, "") : "");
+        }
+      });
+    });
+  }
+
+  /* ---------- MOBILE MENU (burger) ---------- */
+  function isBurger(el) {
+    if (el.tagName !== "BUTTON") return false;
+    if (norm(el.textContent)) return false; // icon-only
+    var svg = el.querySelector("svg");
+    var box = el.getBoundingClientRect();
+    return !!svg && box.width < 60 && box.height < 60 && !el.closest("[class*='qty'],[class*='count']");
+  }
+
+  /* ---------- FAQ (answers restored from source) ---------- */
+  function setupFAQ() {
+    if (!FAQ_DATA || !FAQ_DATA.length) return;
+    var map = {};
+    FAQ_DATA.forEach(function (qa) { map[norm(qa[0]).replace(/[?.]$/, "").toLowerCase()] = qa[1]; });
+    var btns = d.querySelectorAll("button, [role='button'], summary, h3, h4");
+    btns.forEach(function (b) {
+      var t = norm(b.textContent);
+      if (!/\?$/.test(t)) return;
+      var key = t.replace(/[?.]$/, "").toLowerCase();
+      var ans = map[key]; if (!ans) { for (var k in map) { if (key.indexOf(k.slice(0, 18)) >= 0) { ans = map[k]; break; } } }
+      if (!ans || b.getAttribute("data-zr-faq")) return;
+      var panel = d.createElement("div");
+      panel.className = "zr-faq-ans"; panel.hidden = true;
+      panel.style.cssText = "padding:2px 2px 16px;color:var(--dim);font:400 15px/1.6 Archivo,system-ui,sans-serif;max-width:820px";
+      panel.textContent = ans;
+      var host = b.closest("li, [class]") || b;
+      (host.parentNode || b.parentNode).insertBefore(panel, (host.nextSibling));
+      b.setAttribute("data-zr-faq", "1"); b._zrPanel = panel;
+      b.style.cursor = "pointer";
+    });
+  }
+  function toggleFAQ(b) {
+    var p = b._zrPanel; if (!p) return;
+    p.hidden = !p.hidden; b.classList.toggle("zr-open", !p.hidden);
+  }
+
+  /* ---------- TAB GROUPS (cabinet, product, checkout options, chips) ---------- */
+  function siblingGroup(el) {
+    var g = el.parentElement; if (!g) return null;
+    var kids = [].slice.call(g.children).filter(function (c) {
+      return (c.tagName === "BUTTON" || c.tagName === "A" || c.getAttribute("role") === "button") && norm(c.textContent).length < 60;
+    });
+    return kids.length >= 2 ? kids : null;
+  }
+  function activateInGroup(el, cls) {
+    var kids = siblingGroup(el); if (!kids) return false;
+    kids.forEach(function (k) { k.classList.remove(cls); });
+    el.classList.add(cls);
+    // if there are matching sibling panels, switch them
+    var host = el.parentElement.parentElement;
+    if (host) {
+      var panels = [].slice.call(host.children).filter(function (c) { return c !== el.parentElement && c.nodeType === 1 && c.children.length; });
+      if (panels.length === kids.length) {
+        var idx = kids.indexOf(el);
+        panels.forEach(function (p, i) { p.hidden = i !== idx; });
+      }
+    }
+    return true;
+  }
+
+  /* ---------- GLOBAL CLICK DELEGATION ---------- */
+  d.addEventListener("click", function (e) {
+    var el = e.target.closest("button, a, [role='button']");
+    if (!el) return;
+    var txt = norm(el.textContent);
+
+    if (isThemeBtn(el)) { e.preventDefault(); setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"); return; }
+    if (/^(В корзину|Купить|Добавить в корзину|Заказать)$/i.test(txt)) { e.preventDefault(); addToCart(el); return; }
+    if (txt === "+" || txt === "−" || txt === "-") { e.preventDefault(); stepQty(el, (txt === "+") ? 1 : -1); return; }
+    if (el.getAttribute("data-zr-faq")) { e.preventDefault(); toggleFAQ(el); return; }
+    // FAQ accordion (question contains ?) or filter group header (ends –/+) — only if it has a panel sibling
+    if (el.tagName === "BUTTON" && (/\?/.test(txt) || /[–−+-]\s*$/.test(txt)) && txt.length < 220) {
+      var _s = el.nextElementSibling;
+      if (_s && norm(_s.textContent).length > 15) { e.preventDefault(); toggleCollapse(el); return; }
+    }
+    // collapsible filter group header (ends with +/-)
+    if (/[–−+]\s*$/.test(txt) && txt.length < 40) { e.preventDefault(); toggleCollapse(el); return; }
+    // grouped selectors: cabinet/product tabs, checkout options, category chips
+    // (buttons only — never touch <a> nav/footer links)
+    if (el.tagName === "BUTTON" && txt && txt !== "Каталог" && el.querySelectorAll("a,button,input").length === 0) {
+      var kids = siblingGroup(el);
+      if (kids) activateInGroup(el, "zr-tab-active");
+    }
+  }, false);
+
+  /* ---------- INIT ---------- */
+  function injectStateCSS() {
+    if (d.getElementById("zr-state-css")) return;
+    var st = d.createElement("style"); st.id = "zr-state-css";
+    st.textContent =
+      ".zr-chip-active{background:var(--accent)!important;color:var(--accent-ink)!important;border-color:var(--accent)!important}" +
+      ".zr-tab-active{color:var(--accent)!important;border-bottom-color:var(--accent)!important}" +
+      ".zr-selected{outline:2px solid var(--accent)!important;outline-offset:-2px}" +
+      ".zr-badge{transition:.2s}";
+    d.head.appendChild(st);
+  }
+  function collapseFAQ() {
+    // FAQ questions start collapsed (answer is the next sibling of the question button)
+    d.querySelectorAll("button").forEach(function (b) {
+      var t = norm(b.textContent);
+      if (!/\?/.test(t) || t.length > 220) return;
+      var s = b.nextElementSibling;
+      if (s && norm(s.textContent).length > 15 && s.querySelectorAll("button,a,input").length === 0) {
+        s.hidden = true; b.classList.remove("zr-open");
+      }
+    });
+  }
+  function init() {
+    injectStateCSS();
+    themeLabel();
+    updateBadge();
+    wireSliders();
+    try { setupFAQ(); } catch (e) {}
+    try { collapseFAQ(); } catch (e) {}
+  }
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", init); else init();
+})();
