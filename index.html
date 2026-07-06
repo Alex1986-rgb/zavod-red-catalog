@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+<html><head><script>(function(){try{var t=localStorage.getItem("zr_theme")||"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
     .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
       border:1px solid color-mix(in srgb,currentColor 50%,transparent);
       border-radius:2px;box-sizing:border-box;overflow:hidden}
@@ -159,6 +159,18 @@
   @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.35); } 100% { transform: scale(1); } }
   .zr-scroll::-webkit-scrollbar { height: 6px; }
   .zr-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style><style id="zr-theme">
+html[data-theme="light"] [style*="--bg"]{
+  --bg:#eef2f6 !important; --bg2:#ffffff !important;
+  --surface:#ffffff !important; --surface2:#f1f5f8 !important;
+  --border:rgba(12,20,28,.12) !important;
+  --text:#0f1c26 !important; --dim:#596773 !important;
+  --glow:rgba(255,90,31,.10) !important;
+  --brand-filter:brightness(0) opacity(.5) !important;
+}
+html[data-theme="light"] body{background:#eef2f6 !important;color:#0f1c26 !important;}
+html[data-theme="light"] .logo{color:#0f1c26 !important;}
+html[data-theme="light"] .logo svg [fill="#fff"],html[data-theme="light"] .logo svg [fill="#ffffff"],html[data-theme="light"] .logo svg [fill="#FFF"]{fill:#0f1c26 !important;}
 </style></head>
 <body>
 
@@ -1021,4 +1033,16 @@
 
 
 
-</body></html>
+<script id="zr-theme-toggle">(function(){
+  var btn=document.querySelector('button[title="Переключить тему"]');
+  function label(){var t=document.documentElement.getAttribute('data-theme')||'dark';
+    if(btn)btn.innerHTML=(t==='light')?'<span>🌙</span><span>Тёмная</span>':'<span>☀</span><span>Светлая</span>';}
+  label();
+  if(btn)btn.addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme')||'dark';
+    var nx=(cur==='light')?'dark':'light';
+    document.documentElement.setAttribute('data-theme',nx);
+    try{localStorage.setItem('zr_theme',nx);}catch(e){}
+    label();
+  });
+})();</script></body></html>
