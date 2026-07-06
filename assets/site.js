@@ -271,7 +271,8 @@
     if (!el) return;
     var txt = norm(el.textContent);
 
-    if (isThemeBtn(el)) { e.preventDefault(); setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"); return; }
+    // theme toggle disabled — site is always light
+    if (isThemeBtn(el)) { e.preventDefault(); return; }
     if (/^(В корзину|Купить|Добавить в корзину|Заказать)$/i.test(txt)) { e.preventDefault(); addToCart(el); return; }
     if (txt === "+" || txt === "−" || txt === "-") { e.preventDefault(); stepQty(el, (txt === "+") ? 1 : -1); return; }
     if (el.getAttribute("data-zr-faq")) { e.preventDefault(); toggleFAQ(el); return; }
@@ -298,8 +299,59 @@
       ".zr-chip-active{background:var(--accent)!important;color:var(--accent-ink)!important;border-color:var(--accent)!important}" +
       ".zr-tab-active{color:var(--accent)!important;border-bottom-color:var(--accent)!important}" +
       ".zr-selected{outline:2px solid var(--accent)!important;outline-offset:-2px}" +
-      ".zr-badge{transition:.2s}";
+      ".zr-badge{transition:.2s}" +
+      /* mobile drawer */
+      "#zr-drawer{position:fixed;inset:0;background:rgba(10,18,25,.55);z-index:100000;display:none}" +
+      "#zr-drawer.on{display:block}" +
+      "#zr-drawer .zr-dp{position:absolute;top:0;left:0;bottom:0;width:84%;max-width:330px;background:#fff;padding:58px 0 24px;box-shadow:2px 0 30px rgba(0,0,0,.25);overflow:auto;display:flex;flex-direction:column}" +
+      "#zr-drawer .zr-dp a{padding:15px 26px;color:#101f2a;font:600 16px/1.25 Archivo,system-ui,sans-serif;text-decoration:none;border-bottom:1px solid rgba(10,20,28,.08)}" +
+      "#zr-drawer .zr-dp a:active{background:#f5f6f2}" +
+      "#zr-drawer .zr-dc{position:absolute;top:14px;right:16px;width:38px;height:38px;background:#f2f3f0;border:none;border-radius:10px;font-size:18px;color:#101f2a;cursor:pointer}" +
+      ".zr-burger-extra{display:none}" +
+      /* mobile layout: hide desktop menu row + theme toggle; tame overflow */
+      "@media(max-width:860px){" +
+      ".zr-mainnav{display:none!important}" +
+      ".zr-burger-extra{display:inline-flex!important}" +
+      "img{max-width:100%;height:auto}" +
+      "}" +
+      "@media(max-width:620px){" +
+      ".zr-float-cta{display:none!important}" +
+      "}";
     d.head.appendChild(st);
+  }
+  /* ----- Always-light theme (no dark option) ----- */
+  function forceLight() {
+    root.setAttribute("data-theme", "light");
+    try { localStorage.setItem("zr_theme", "light"); } catch (e) {}
+    d.querySelectorAll("button").forEach(function (b) {
+      var t = norm(b.textContent);
+      if (t.length < 16 && /(Светл|Тёмн|Темн)/.test(t)) { b.style.display = "none"; b.setAttribute("aria-hidden", "true"); }
+    });
+  }
+  /* ----- Mobile navigation drawer ----- */
+  var MENU = [["Каталог", "catalog.html"], ["Подбор", "podbor.html"], ["Цены", "calculator.html"], ["Производителям", "about.html"], ["Импортозамещение", "blog.html"], ["Блог", "blog.html"], ["О заводе", "about.html"], ["Контакты", "about.html"]];
+  function setupMobileNav() {
+    // tag the desktop main-menu row (parent of the "Подбор" nav link)
+    var items = [].slice.call(d.querySelectorAll("a")).filter(function (a) { return norm(a.textContent) === "Подбор" && a.querySelectorAll("*").length < 2; });
+    if (items[0] && items[0].parentElement) items[0].parentElement.classList.add("zr-mainnav");
+    // build drawer once
+    if (!d.getElementById("zr-drawer")) {
+      var dr = d.createElement("div"); dr.id = "zr-drawer";
+      var html = '<div class="zr-dp"><button class="zr-dc" aria-label="Закрыть">✕</button>';
+      MENU.forEach(function (m) { html += '<a href="' + m[1] + '">' + m[0] + "</a>"; });
+      html += '<a href="cart.html">Корзина</a><a href="cabinet.html">Личный кабинет</a></div>';
+      dr.innerHTML = html;
+      d.body.appendChild(dr);
+      dr.addEventListener("click", function (e) { if (e.target === dr || e.target.closest(".zr-dc")) dr.classList.remove("on"); });
+    }
+    // wire the burger ("≡ Каталог" button) to open the drawer on mobile
+    var burger = [].slice.call(d.querySelectorAll("button")).filter(function (b) { return /^Каталог$/.test(norm(b.textContent)); })[0];
+    if (burger && !burger._zrWired) {
+      burger._zrWired = 1;
+      burger.addEventListener("click", function (e) {
+        if (window.innerWidth <= 860) { e.preventDefault(); e.stopImmediatePropagation(); d.getElementById("zr-drawer").classList.add("on"); }
+      }, true);
+    }
   }
   function collapseFAQ() {
     // FAQ questions start collapsed (answer is the next sibling of the question button)
@@ -312,13 +364,23 @@
       }
     });
   }
+  function tagFloatCTA() {
+    d.querySelectorAll("button, a").forEach(function (e) {
+      if (!/Подбор за 15/.test(norm(e.textContent))) return;
+      var n = e;
+      for (var i = 0; i < 4 && n; i++) { if (getComputedStyle(n).position === "fixed") { n.classList.add("zr-float-cta"); return; } n = n.parentElement; }
+      e.classList.add("zr-float-cta");
+    });
+  }
   function init() {
     injectStateCSS();
-    themeLabel();
+    try { forceLight(); } catch (e) {}
     updateBadge();
     wireSliders();
     try { setupFAQ(); } catch (e) {}
     try { collapseFAQ(); } catch (e) {}
+    try { setupMobileNav(); } catch (e) {}
+    try { tagFloatCTA(); } catch (e) {}
   }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", init); else init();
 })();
