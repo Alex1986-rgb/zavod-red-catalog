@@ -1,12 +1,1 @@
-{
-  "version": "0.0.1",
-  "configurations": [
-    {
-      "name": "zavod-catalog",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4188", "--directory", "/Users/alexandr/projects/zavod-red-catalog"],
-      "port": 4188,
-      "autoPort": false
-    }
-  ]
-}
+{"version":"0.0.1","configurations":[{"name":"zr-cat","runtimeExecutable":"python3","runtimeArgs":["-m","http.server","8090","--directory","/Users/alexandr/projects/zavod-red-catalog"],"port":8090,"autoPort":false}]}
