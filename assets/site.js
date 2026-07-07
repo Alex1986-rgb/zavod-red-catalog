@@ -329,7 +329,7 @@
     });
   }
   /* ----- Mobile navigation drawer ----- */
-  var MENU = [["Каталог", "catalog.html"], ["Подбор", "podbor.html"], ["Цены", "calculator.html"], ["Производителям", "about.html"], ["Импортозамещение", "blog.html"], ["Блог", "blog.html"], ["О заводе", "about.html"], ["Контакты", "about.html"]];
+  var MENU = [["Каталог", "catalog.html"], ["Подбор", "podbor.html"], ["Цены", "calculator.html"], ["Производителям", "about.html"], ["Импортозамещение", "blog.html"], ["Блог", "blog.html"], ["О заводе", "about.html"], ["Контакты", "contacts.html"]];
   function setupMobileNav() {
     // tag the desktop main-menu row (parent of the "Подбор" nav link)
     var items = [].slice.call(d.querySelectorAll("a")).filter(function (a) { return norm(a.textContent) === "Подбор" && a.querySelectorAll("*").length < 2; });
@@ -372,9 +372,16 @@
       e.classList.add("zr-float-cta");
     });
   }
+  function repointContacts() {
+    // отдельная страница «Контакты» — уводим ссылки с about.html на contacts.html
+    [].forEach.call(d.querySelectorAll("a"), function (a) {
+      if (norm(a.textContent) === "Контакты") a.setAttribute("href", "contacts.html");
+    });
+  }
   function init() {
     injectStateCSS();
     try { forceLight(); } catch (e) {}
+    try { repointContacts(); } catch (e) {}
     updateBadge();
     wireSliders();
     try { setupFAQ(); } catch (e) {}
