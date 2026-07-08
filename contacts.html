@@ -219,18 +219,21 @@ footer{background:#0f1c26;color:#a9b6c0;padding:44px 0 26px;margin-top:10px}
 
 <div id="zr-toast" style="position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);z-index:9999;background:var(--accent);color:#fff;font-weight:600;font-size:14px;padding:13px 22px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.3s">Заявка отправлена</div>
 
+<script src="assets/forms.js?v=1"></script>
 <script>
 function zrSend(e){
   e.preventDefault();
   var f=e.target, name=f.name.value.trim(), contact=f.contact.value.trim(), msg=f.message.value.trim();
-  // демо-режим (нет бэкенда на GitHub Pages): открываем письмо + подтверждаем
-  var body=encodeURIComponent('Имя: '+name+'\nКонтакт: '+contact+'\nЗадача: '+msg);
   var t=document.getElementById('zr-toast');
-  t.textContent='Спасибо, '+(name||'заявка принята')+'! Инженер свяжется с вами.';
-  t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
-  setTimeout(function(){t.style.opacity='0';t.style.transform='translateX(-50%) translateY(20px)';},3500);
-  try{window.location.href='mailto:zr@zavod-red.ru?subject='+encodeURIComponent('Заявка с сайта — подбор редуктора')+'&body='+body;}catch(_){}
-  f.reset();
+  function ok(){ t.textContent='Спасибо, '+(name||'заявка принята')+'! Инженер свяжется с вами.'; t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)'; setTimeout(function(){t.style.opacity='0';t.style.transform='translateX(-50%) translateY(20px)';},3500); f.reset(); }
+  function mailtoFallback(){ var body=encodeURIComponent('Имя: '+name+'\nКонтакт: '+contact+'\nЗадача: '+msg); try{window.location.href='mailto:zr@zavod-red.ru?subject='+encodeURIComponent('Заявка с сайта — подбор редуктора')+'&body='+body;}catch(_){} }
+  var fields={ Имя:name, Контакт:contact, Задача:(msg||'—'), Страница:'Контакты' };
+  if(window.zrSubmitForm){
+    window.zrSubmitForm('Заявка с сайта — Контакты', fields).then(function(sent){
+      if(!sent && !(window.zrFormsEnabled&&window.zrFormsEnabled())) mailtoFallback();
+      ok();
+    });
+  } else { mailtoFallback(); ok(); }
   return false;
 }
 </script>

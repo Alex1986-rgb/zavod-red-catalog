@@ -123,6 +123,17 @@
     var order = { no: no, date: new Date().toISOString(), items: its.map(function (i) { return { name: i.name, price: i.price, qty: i.qty }; }), total: total, entity: entity, org: val("org"), person: val("person"), phone: val("phone"), email: val("email"), status: "Принят" };
     try { var arr = JSON.parse(localStorage.getItem("zr_orders") || "[]"); arr.unshift(order); localStorage.setItem("zr_orders", JSON.stringify(arr.slice(0, 50))); } catch (e) {}
     try { localStorage.setItem("zr_profile", JSON.stringify({ entity: entity, org: val("org"), inn: val("inn"), person: val("person"), phone: val("phone"), email: val("email"), addr: val("addr") })); } catch (e) {}
+    // отправка заявки на почту (если настроен Web3Forms) — fire-and-forget
+    try {
+      if (window.zrSubmitForm) {
+        window.zrSubmitForm("Новый заказ " + no + " — сайт «Завод Редукторов»", {
+          "Номер заказа": no, "Тип": entity === "ind" ? "Физлицо" : "Юрлицо",
+          "Организация/ФИО": val("org") || val("person"), "ИНН": val("inn"), "Контактное лицо": val("person"),
+          "Телефон": val("phone"), "Email": val("email"), "Адрес": val("addr"), "Комментарий": val("comment"),
+          "Состав": its.map(function (i) { return i.name + " ×" + (i.qty || 1); }).join("; "), "Сумма": rub(total)
+        });
+      }
+    } catch (e) {}
     clearCart();
     host.innerHTML = '<div class="zr-co-ok"><div class="ic">✓</div><h2>Заказ принят</h2>' +
       '<p>Спасибо! Мы получили заявку. Инженер свяжется с вами в течение 15 минут в рабочее время, подтвердит наличие, рассчитает доставку и выставит счёт.</p>' +
