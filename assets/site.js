@@ -387,11 +387,94 @@
       if (norm(a.textContent) === "Контакты") a.setAttribute("href", "contacts.html");
     });
   }
+  function _esc(s){return String(s==null?"":s).replace(/[<>&"]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c];});}
+  function filterCatalog(q, inp){
+    q=norm(q).toLowerCase(); if(!q) return;
+    if(inp) inp.value=q;
+    var addBtns=[].slice.call(d.querySelectorAll("button,a")).filter(function(b){return /^(В корзину|Купить|Заказать|Добавить)/.test(norm(b.textContent));});
+    var cards=[];
+    addBtns.forEach(function(b){ var c=b;
+      for(var h=0;h<9 && c && c.parentElement;h++){
+        var sib=[].slice.call(c.parentElement.children).filter(function(ch){return /В корзину|Купить|Заказать|Добавить/.test(ch.textContent||"");}).length;
+        if(sib>1){ if(cards.indexOf(c)<0)cards.push(c); break; }
+        c=c.parentElement;
+      }
+    });
+    if(!cards.length) return;
+    var shown=0;
+    cards.forEach(function(card){ var m=norm(card.textContent).toLowerCase().indexOf(q)>=0; card.style.display=m?"":"none"; if(m)shown++; });
+    var grid=cards[0].parentElement;
+    var b=d.getElementById("zr-search-banner");
+    if(!b){ b=d.createElement("div"); b.id="zr-search-banner"; grid.parentElement.insertBefore(b,grid); }
+    if(shown>0) b.innerHTML='<span>По запросу <b>«'+_esc(q)+'»</b> найдено: '+shown+'</span><a href="catalog.html">Сбросить ✕</a>';
+    else b.innerHTML='<span>По запросу <b>«'+_esc(q)+'»</b> ничего не найдено. Уточните название или <a href="podbor.html" style="color:#ff5a1f">подберите по параметрам</a>.</span><a href="catalog.html">Сбросить ✕</a>';
+  }
+  function setupSearch(){
+    var inputs=[].slice.call(d.querySelectorAll("input")).filter(function(i){return /[Пп]оиск/.test(i.getAttribute("placeholder")||"");});
+    var INDEX=[
+      ["Червячные редукторы","тип","catalog.html?q="+encodeURIComponent("червяч")],
+      ["Цилиндрические редукторы","тип","catalog.html?q="+encodeURIComponent("цилиндрическ")],
+      ["Соосно-цилиндрические","тип","catalog.html?q="+encodeURIComponent("соосно")],
+      ["Коническо-цилиндрические","тип","catalog.html?q="+encodeURIComponent("коническо")],
+      ["Планетарные редукторы","тип","catalog.html?q="+encodeURIComponent("планетар")],
+      ["Мотор-редукторы","тип","catalog.html?q="+encodeURIComponent("мотор")],
+      ["Вариаторы","тип","catalog.html?q="+encodeURIComponent("вариатор")],
+      ["EVL 197 — аналог SEW R107","товар","product.html"],
+      ["Аналоги SEW","бренд","catalog.html?q=SEW"],
+      ["Аналоги NORD","бренд","catalog.html?q=NORD"],
+      ["Аналоги Bonfiglioli","бренд","catalog.html?q=Bonfiglioli"],
+      ["Аналоги Motovario","бренд","catalog.html?q=Motovario"],
+      ["Подбор по параметрам","калькулятор","podbor.html"],
+      ["Подбор по фото шильдика","сервис","podbor.html"],
+      ["Калькулятор цены","цены","calculator.html"]
+    ];
+    if(!d.getElementById("zr-search-css")){
+      var st=d.createElement("style"); st.id="zr-search-css";
+      st.textContent="#zr-sug{position:fixed;z-index:100001;background:#fff;border:1px solid rgba(12,20,28,.12);border-radius:14px;box-shadow:0 18px 44px rgba(10,18,25,.18);overflow:hidden;display:none}"
+        +"#zr-sug.on{display:block}"
+        +"#zr-sug a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;color:#0f1c26;text-decoration:none;font:600 14.5px 'Archivo',sans-serif;border-bottom:1px solid rgba(12,20,28,.06)}"
+        +"#zr-sug a:last-child{border-bottom:0}#zr-sug a:hover{background:#f5f7f4}"
+        +"#zr-sug a .tp{color:#8a97a1;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}"
+        +"#zr-sug a.go{color:#ff5a1f}"
+        +"#zr-search-banner{max-width:1240px;margin:0 auto 6px;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font:600 14.5px 'Archivo',sans-serif;color:#3f4b55}"
+        +"#zr-search-banner b{color:#0f1c26}#zr-search-banner a{color:#5a6a75;font-weight:700;text-decoration:none}#zr-search-banner a:hover{color:#ff5a1f}";
+      d.head.appendChild(st);
+    }
+    var sug=d.getElementById("zr-sug");
+    if(!sug){ sug=d.createElement("div"); sug.id="zr-sug"; d.body.appendChild(sug); }
+    var active=null;
+    function place(inp){ var r=inp.getBoundingClientRect(); sug.style.left=r.left+"px"; sug.style.top=(r.bottom+6)+"px"; sug.style.width=Math.max(260,Math.min(r.width,520))+"px"; }
+    function render(inp){
+      var q=norm(inp.value).toLowerCase(), html="";
+      if(q.length>=1){
+        INDEX.filter(function(x){return x[0].toLowerCase().indexOf(q)>=0||x[1].indexOf(q)>=0;}).slice(0,6).forEach(function(x){
+          html+='<a href="'+x[2]+'"><span>'+x[0]+'</span><span class="tp">'+x[1]+'</span></a>';
+        });
+        html+='<a class="go" href="catalog.html?q='+encodeURIComponent(inp.value)+'"><span>Искать «'+_esc(norm(inp.value))+'» в каталоге</span><span class="tp">enter</span></a>';
+      }
+      sug.innerHTML=html;
+      if(html){ place(inp); sug.classList.add("on"); } else sug.classList.remove("on");
+    }
+    inputs.forEach(function(inp){
+      inp.setAttribute("autocomplete","off");
+      inp.addEventListener("input",function(){ active=inp; render(inp); });
+      inp.addEventListener("focus",function(){ active=inp; if(norm(inp.value))render(inp); });
+      inp.addEventListener("keydown",function(e){
+        if(e.key==="Enter"){ e.preventDefault(); var v=norm(inp.value); if(v)location.href="catalog.html?q="+encodeURIComponent(v); }
+        else if(e.key==="Escape"){ sug.classList.remove("on"); }
+      });
+      inp.addEventListener("blur",function(){ setTimeout(function(){ sug.classList.remove("on"); },180); });
+    });
+    window.addEventListener("scroll",function(){ if(active&&sug.classList.contains("on"))place(active); },true);
+    var m=location.search.match(/[?&]q=([^&]+)/);
+    if(m && /catalog/.test(location.pathname)){ filterCatalog(decodeURIComponent(m[1].replace(/\+/g," ")), inputs[0]); }
+  }
   function init() {
     injectStateCSS();
     try { window.zrRefreshBadge = updateBadge; } catch (e) {}
     try { forceLight(); } catch (e) {}
     try { repointContacts(); } catch (e) {}
+    try { setupSearch(); } catch (e) {}
     updateBadge();
     wireSliders();
     try { setupFAQ(); } catch (e) {}
