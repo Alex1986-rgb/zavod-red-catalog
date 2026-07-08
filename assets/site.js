@@ -425,7 +425,7 @@
       ["Аналоги Bonfiglioli","бренд","catalog.html?q=Bonfiglioli"],
       ["Аналоги Motovario","бренд","catalog.html?q=Motovario"],
       ["Подбор по параметрам","калькулятор","podbor.html"],
-      ["Подбор по фото шильдика","сервис","podbor.html"],
+      ["Подбор по фото шильдика","сервис","shildik.html"],
       ["Калькулятор цены","цены","calculator.html"]
     ];
     if(!d.getElementById("zr-search-css")){
@@ -469,12 +469,21 @@
     var m=location.search.match(/[?&]q=([^&]+)/);
     if(m && /catalog/.test(location.pathname)){ filterCatalog(decodeURIComponent(m[1].replace(/\+/g," ")), inputs[0]); }
   }
+  function wireShield() {
+    [].forEach.call(d.querySelectorAll("button,span,div,a"), function (el) {
+      if (norm(el.textContent) === "по шильду" && el.childElementCount === 0 && !el._zrS) {
+        el._zrS = 1; el.style.cursor = "pointer"; el.title = "Подбор по фото шильдика";
+        el.addEventListener("click", function (ev) { ev.preventDefault(); ev.stopPropagation(); location.href = "shildik.html"; }, true);
+      }
+    });
+  }
   function init() {
     injectStateCSS();
     try { window.zrRefreshBadge = updateBadge; } catch (e) {}
     try { forceLight(); } catch (e) {}
     try { repointContacts(); } catch (e) {}
     try { setupSearch(); } catch (e) {}
+    try { wireShield(); } catch (e) {}
     updateBadge();
     wireSliders();
     try { setupFAQ(); } catch (e) {}

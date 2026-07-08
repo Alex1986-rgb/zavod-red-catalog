@@ -37,3 +37,20 @@ function tryMount(){
 }
 var n=0;(function loop(){if(tryMount())return;if(n++<60)setTimeout(loop,80);})();
 })();
+
+/* zr-ord-intercept: «Заказать» → карточка типоразмера со всеми данными строки */
+(function(){var d=document;
+function nm(x){return (x||"").replace(/\s+/g," ").trim();}
+d.addEventListener("click",function(e){
+  var btn=e.target.closest(".pf-ord"); if(!btn) return;
+  var row=btn.closest("tr"); if(!row) return;
+  e.preventDefault(); e.stopPropagation();
+  var tz=row.querySelector(".pf-tz");
+  var name=tz?nm((tz.querySelector("b")||{}).textContent):"";
+  var evl=tz?nm((tz.querySelector(".pf-evl")||{}).textContent):"";
+  var sub=tz?[].map.call(tz.querySelectorAll(".pf-tr-gost,.pf-tr-an"),function(x){return nm(x.textContent);}).join(" · "):"";
+  var tds=[].slice.call(row.querySelectorAll("td")).slice(1,-1).map(function(td){return nm(td.textContent).replace(/^(от|до)\s+/,"");});
+  var q=new URLSearchParams({n:name||evl,e:evl||name,s:sub,p:tds[0]||"",n2:tds[1]||"",t:tds[2]||"",i:tds[3]||"",f:tds[4]||"",sf:tds[5]||"",n1:tds[6]||""});
+  location.href="model.html?"+q.toString();
+},true);
+})();

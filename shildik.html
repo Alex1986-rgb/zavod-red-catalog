@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Подбор редуктора по шильдику — загрузите фото таблички | Завод Редукторов</title>
+<meta name="description" content="Загрузите фото шильдика редуктора — система распознает маркировку и предложит аналоги из базы 8000+ типоразмеров. Или инженер подберёт вручную за 15 минут.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://alex1986-rgb.github.io/zavod-red-catalog/shildik.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Подбор редуктора по шильдику — по фото таблички">
+<meta property="og:description" content="Загрузите фото шильдика — распознаем маркировку и предложим аналоги из 8000+ типоразмеров.">
+<meta property="og:image" content="https://alex1986-rgb.github.io/zavod-red-catalog/assets/og-image.jpg">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://alex1986-rgb.github.io/zavod-red-catalog/index.html"},{"@type":"ListItem","position":2,"name":"Подбор по шильдику","item":"https://alex1986-rgb.github.io/zavod-red-catalog/shildik.html"}]}</script>
+<style>
+:root{--bg:#eef2f6;--surface:#fff;--text:#0f1c26;--dim:#5a6a75;--accent:#e11b1b;--accent2:#cf1616;--border:rgba(12,20,28,.1);--mono:'IBM Plex Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Archivo',system-ui,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.hd{display:flex;align-items:center;gap:16px;height:70px}
+.logo{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:17px;line-height:.95}
+.logo .mono{width:42px;height:42px;border-radius:11px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+.logo span{color:var(--dim);font-size:10.5px;font-weight:600;letter-spacing:.06em}
+nav.main{display:flex;gap:20px;margin-left:6px;flex-wrap:wrap}
+nav.main a{font-weight:600;font-size:14px;padding:6px 0;border-bottom:2px solid transparent}
+nav.main a:hover,nav.main a.active{color:var(--accent);border-color:var(--accent)}
+.hd .cta{margin-left:auto;display:inline-flex;padding:11px 20px;border-radius:11px;background:var(--accent);color:#fff;font-weight:700;font-size:14px}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:26px 0 10px}
+h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(27px,4vw,44px);letter-spacing:-.02em;line-height:1.08;margin-bottom:12px}
+.lead{color:var(--dim);font-size:16.5px;line-height:1.6;max-width:660px;margin-bottom:26px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;margin-bottom:36px}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:26px}
+.panel h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;margin-bottom:8px}
+.panel .ps{color:var(--dim);font-size:14px;line-height:1.5;margin-bottom:16px}
+.drop{border:2px dashed rgba(225,27,27,.35);border-radius:16px;background:rgba(225,27,27,.03);padding:34px 20px;text-align:center;cursor:pointer;transition:.15s}
+.drop:hover,.drop.over{border-color:var(--accent);background:rgba(225,27,27,.07)}
+.drop .ic{font-size:38px}
+.drop b{display:block;margin:10px 0 4px;font-size:16px}
+.drop span{color:var(--dim);font-size:13.5px}
+.drop img{max-width:100%;max-height:260px;border-radius:12px;object-fit:contain}
+.progress{display:none;margin-top:14px}
+.progress .bar{height:8px;background:#eef2f6;border-radius:5px;overflow:hidden}
+.progress .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff4b3c,var(--accent));transition:.2s}
+.progress .pt{font:600 13px var(--mono);color:var(--dim);margin-top:7px}
+.ocr{display:none;margin-top:16px}
+.ocr label{font-size:13px;font-weight:600;color:var(--dim);display:block;margin-bottom:6px}
+.ocr textarea{width:100%;background:#f5f7f9;border:1px solid var(--border);border-radius:11px;padding:12px 14px;font:500 14px/1.5 var(--mono);color:var(--text);resize:vertical}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;border:1px solid transparent;transition:.15s;font-family:inherit}
+.btn.primary{background:var(--accent);color:#fff}.btn.primary:hover{background:var(--accent2)}
+.btn.ghost{background:#fff;color:var(--text);border-color:var(--border)}.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn.wide{width:100%;margin-top:14px}
+.manual{margin-top:18px;border-top:1px solid rgba(12,20,28,.08);padding-top:18px}
+.manual input{width:100%;background:#f5f7f9;border:1px solid var(--border);border-radius:11px;padding:13px 15px;font:600 15px var(--mono);color:var(--text)}
+.manual input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(225,27,27,.12)}
+.res{min-height:120px}
+.res-empty{color:var(--dim);font-size:14.5px;line-height:1.6;padding:14px 4px}
+.hit{border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:12px;transition:.15s}
+.hit:hover{border-color:var(--accent)}
+.hit .hn{font-weight:800;font-size:17px;font-family:'Space Grotesk',sans-serif}
+.hit .hs{color:var(--dim);font-size:13px;margin:4px 0 8px}
+.hit .ha{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.hit .ha span{padding:4px 10px;border-radius:999px;background:rgba(225,27,27,.07);border:1px solid rgba(225,27,27,.2);color:var(--accent);font:600 12px var(--mono)}
+.hit a.more{color:var(--accent);font-weight:700;font-size:14px}
+.hit .match{float:right;font:700 11px var(--mono);color:#12915f;background:rgba(18,145,95,.1);padding:4px 10px;border-radius:999px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:6px 0 40px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 22px}
+.step .n{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:12px}
+.step b{display:block;margin-bottom:5px}
+.step span{color:var(--dim);font-size:13.5px;line-height:1.5}
+footer{background:#0f1c26;color:#a9b6c0;padding:28px 0;text-align:center;font-size:13.5px}
+footer a{color:#fff;font-weight:600}
+@media(max-width:880px){.grid,.steps{grid-template-columns:1fr}nav.main{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap hd">
+  <a class="logo" href="index.html"><span class="mono">ЗР</span><span>ЗАВОД<br>РЕДУКТОРОВ</span></a>
+  <nav class="main"><a href="catalog.html">Каталог</a><a href="podbor.html">Подбор</a><a class="active" href="shildik.html">По шильдику</a><a href="calculator.html">Цены</a><a href="contacts.html">Контакты</a></nav>
+  <a class="cta" href="contacts.html#contactForm">Получить расчёт</a>
+</div></header>
+
+<div class="wrap">
+  <div class="eyebrow">Фото → маркировка → аналог</div>
+  <h1>Подбор редуктора по шильдику</h1>
+  <p class="lead">Загрузите фото заводской таблички — система распознает маркировку и предложит подходящие типоразмеры и аналоги из базы 8&nbsp;000+ позиций. Точный подбор подтвердит инженер.</p>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>1. Загрузите фото шильдика</h2>
+      <p class="ps">Табличка целиком, без бликов. Подойдёт фото с телефона — JPG, PNG или HEIC до 15 МБ.</p>
+      <div class="drop" id="drop">
+        <input type="file" id="file" accept="image/*" capture="environment" hidden>
+        <div id="dropInner"><div class="ic">📷</div><b>Нажмите или перетащите фото</b><span>шильдик, табличка, маркировка на корпусе</span></div>
+      </div>
+      <div class="progress" id="prog"><div class="bar"><i id="bar"></i></div><div class="pt" id="pt">Загрузка модуля распознавания…</div></div>
+      <div class="ocr" id="ocrBox">
+        <label>Распознанный текст (можно поправить):</label>
+        <textarea id="ocrText" rows="3"></textarea>
+        <button class="btn primary wide" id="findBtn" type="button">Найти варианты по маркировке</button>
+      </div>
+      <div class="manual">
+        <label style="font-size:13px;font-weight:600;color:var(--dim);display:block;margin-bottom:7px">Или введите маркировку вручную:</label>
+        <input id="manual" placeholder="Например: SEW R107, NMRV 063, EVL 197, 4МЦ2С-63…">
+      </div>
+    </div>
+    <div class="panel">
+      <h2>2. Варианты из базы</h2>
+      <p class="ps">Совпадения по маркировке, ГОСТ-обозначениям и импортным аналогам (SEW, NORD, Bonfiglioli, Motovario и др.).</p>
+      <div class="res" id="res"><div class="res-empty">Здесь появятся подходящие типоразмеры.<br>Загрузите фото или введите маркировку — например «NMRV 063» или «SEW R107».</div></div>
+      <a class="btn ghost wide" id="engBtn" href="contacts.html#contactForm">Отправить инженеру — ответ за 15 минут</a>
+    </div>
+  </div>
+
+  <div class="eyebrow">Как это работает</div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><b>Фото шильдика</b><span>Система распознаёт текст таблички прямо в браузере — фото никуда не загружается.</span></div>
+    <div class="step"><div class="n">2</div><b>Поиск по базе</b><span>Маркировка сверяется с 8&nbsp;000+ типоразмерами: наши серии, ГОСТ и импортные аналоги.</span></div>
+    <div class="step"><div class="n">3</div><b>Подтверждение инженером</b><span>Проверим присоединительные размеры, подберём исполнение, рассчитаем цену и срок.</span></div>
+  </div>
+</div>
+
+<footer><div class="wrap">© Завод Редукторов · Челябинск · <a href="tel:+74951514102">+7 (495) 151-41-02</a> · <a href="mailto:zr@zavod-red.ru">zr@zavod-red.ru</a></div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var d=document, DB=null, lastText="";
+  function esc(s){return String(s).replace(/[<>&]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c];});}
+  function loadDB(){ return DB?Promise.resolve(DB):fetch("assets/podbor-data.json?v=8").then(function(r){return r.json();}).then(function(j){DB=j;return j;}); }
+
+  /* --- поиск по базе --- */
+  function tokens(text){
+    var up=String(text||"").toUpperCase().replace(/[ЁЕ]/g,"Е");
+    var raw=up.match(/[A-ZА-Я0-9][A-ZА-Я0-9\-\/\.]{1,}/g)||[];
+    var out=[]; raw.forEach(function(t){ t=t.replace(/^[\-\/\.]+|[\-\/\.]+$/g,""); if(t.length>=2&&/\d|[A-Z]{2,}/.test(t)&&out.indexOf(t)<0)out.push(t); });
+    return out.slice(0,40);
+  }
+  function nrm(s){return String(s).toUpperCase().replace(/[\s\-]/g,"");}
+  function search(text){
+    var tk=tokens(text).map(nrm).filter(function(t){return t.length>=2;});
+    if(!tk.length)return [];
+    var hits=[];
+    Object.keys(DB.g).forEach(function(k){
+      var g=DB.g[k], score=0, why=[];
+      function chk(str,w,label){ if(!str)return; var c=nrm(str);
+        tk.forEach(function(t){ if(t.length<3&&!/^\d+$/.test(t))return;
+          if(c.indexOf(t)>=0||t.indexOf(c)>=0){score+=w;if(why.indexOf(label||str)<0)why.push(label||str);} }); }
+      chk(g.e,3); chk(g.p,3);
+      if(g.g)Object.keys(g.g).forEach(function(x){chk(g.g[x],2);});
+      if(g.a)Object.keys(g.a).forEach(function(br){ (g.a[br]||[]).forEach(function(m){ chk(br+" "+m,0); chk(m,4,br+" "+m); }); });
+      if(score>0)hits.push({k:k,g:g,score:score,why:why});
+    });
+    hits.sort(function(a,b){return b.score-a.score;});
+    return hits.slice(0,6);
+  }
+  function analogsOf(g){ var out=[]; if(g.a)Object.keys(g.a).forEach(function(br){ (g.a[br]||[]).slice(0,1).forEach(function(m){ out.push(br.replace(" EURODRIVE","")+" "+m); }); }); return out.slice(0,6); }
+  function modelURL(g){
+    var q=new URLSearchParams({n:g.e,e:g.e,s:(g.p?g.p+" · ":"")+"тип: "+(DB.t[g.t]||""),a:analogsOf(g).join("|")});
+    return "model.html?"+q.toString();
+  }
+  function render(hits,qtext){
+    var res=d.getElementById("res");
+    if(!hits.length){ res.innerHTML='<div class="res-empty">По «'+esc(qtext).slice(0,60)+'» точных совпадений нет. Отправьте маркировку инженеру — подберём вручную за 15 минут.</div>'; return; }
+    res.innerHTML=hits.map(function(h){
+      var an=analogsOf(h.g);
+      return '<div class="hit"><span class="match">совпадение</span><div class="hn">'+esc(h.g.e)+'</div>'+
+        '<div class="hs">'+esc((h.g.p?h.g.p+" · ":"")+"тип: "+(DB.t[h.g.t]||""))+(h.why.length?' · найдено по: '+esc(h.why.slice(0,2).join(", ")):'')+'</div>'+
+        (an.length?'<div class="ha">'+an.map(function(a){return "<span>"+esc(a)+"</span>";}).join("")+"</div>":"")+
+        '<a class="more" href="'+modelURL(h.g)+'">Подробнее и цена →</a></div>';
+    }).join("");
+  }
+  function run(text){
+    lastText=text;
+    d.getElementById("engBtn").href="contacts.html?model="+encodeURIComponent(("Шильдик: "+text).slice(0,180))+"#contactForm";
+    loadDB().then(function(){ render(search(text),text); });
+  }
+
+  /* --- ручной ввод --- */
+  var manual=d.getElementById("manual"), _t=null;
+  manual.addEventListener("input",function(){ clearTimeout(_t); _t=setTimeout(function(){ if(manual.value.trim().length>=3)run(manual.value); },350); });
+
+  /* --- фото + OCR --- */
+  var drop=d.getElementById("drop"), file=d.getElementById("file");
+  drop.addEventListener("click",function(){file.click();});
+  ["dragover","dragenter"].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add("over");});});
+  ["dragleave","drop"].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove("over");});});
+  drop.addEventListener("drop",function(e){ if(e.dataTransfer.files&&e.dataTransfer.files[0])handle(e.dataTransfer.files[0]); });
+  file.addEventListener("change",function(){ if(file.files&&file.files[0])handle(file.files[0]); });
+
+  function setProg(p,t){ d.getElementById("prog").style.display="block"; d.getElementById("bar").style.width=Math.round(p*100)+"%"; d.getElementById("pt").textContent=t; }
+  function loadTesseract(){
+    return window.Tesseract?Promise.resolve():new Promise(function(res,rej){
+      var s=d.createElement("script"); s.src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js";
+      s.onload=res; s.onerror=rej; d.head.appendChild(s);
+    });
+  }
+  function handle(f){
+    var url=URL.createObjectURL(f);
+    d.getElementById("dropInner").innerHTML='<img src="'+url+'" alt="шильдик">';
+    setProg(.05,"Загрузка модуля распознавания…");
+    loadTesseract().then(function(){
+      setProg(.15,"Распознаём маркировку…");
+      return window.Tesseract.recognize(f,"eng",{logger:function(m){ if(m.status==="recognizing text")setProg(.15+.8*m.progress,"Распознаём: "+Math.round(m.progress*100)+"%"); }});
+    }).then(function(r){
+      setProg(1,"Готово");
+      var text=(r&&r.data&&r.data.text||"").replace(/\n{2,}/g,"\n").trim();
+      var box=d.getElementById("ocrBox"); box.style.display="block";
+      d.getElementById("ocrText").value=text||"";
+      if(text)run(text);
+      else d.getElementById("res").innerHTML='<div class="res-empty">Текст не распознался — попробуйте фото ближе и без бликов, либо введите маркировку вручную.</div>';
+    }).catch(function(){
+      setProg(1,"Модуль распознавания недоступен");
+      d.getElementById("ocrBox").style.display="block";
+      d.getElementById("res").innerHTML='<div class="res-empty">Не удалось загрузить распознавание (нет сети?). Введите маркировку вручную — поиск по базе работает.</div>';
+    });
+  }
+  d.getElementById("findBtn").addEventListener("click",function(){ var t=d.getElementById("ocrText").value.trim(); if(t)run(t); });
+})();
+</script>
+</body>
+</html>
