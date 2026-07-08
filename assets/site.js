@@ -407,7 +407,7 @@
     var b=d.getElementById("zr-search-banner");
     if(!b){ b=d.createElement("div"); b.id="zr-search-banner"; grid.parentElement.insertBefore(b,grid); }
     if(shown>0) b.innerHTML='<span>По запросу <b>«'+_esc(q)+'»</b> найдено: '+shown+'</span><a href="catalog.html">Сбросить ✕</a>';
-    else b.innerHTML='<span>По запросу <b>«'+_esc(q)+'»</b> ничего не найдено. Уточните название или <a href="podbor.html" style="color:#ff5a1f">подберите по параметрам</a>.</span><a href="catalog.html">Сбросить ✕</a>';
+    else b.innerHTML='<span>По запросу <b>«'+_esc(q)+'»</b> ничего не найдено. Уточните название или <a href="podbor.html" style="color:#e11b1b">подберите по параметрам</a>.</span><a href="catalog.html">Сбросить ✕</a>';
   }
   function setupSearch(){
     var inputs=[].slice.call(d.querySelectorAll("input")).filter(function(i){return /[Пп]оиск/.test(i.getAttribute("placeholder")||"");});
@@ -435,9 +435,9 @@
         +"#zr-sug a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;color:#0f1c26;text-decoration:none;font:600 14.5px 'Archivo',sans-serif;border-bottom:1px solid rgba(12,20,28,.06)}"
         +"#zr-sug a:last-child{border-bottom:0}#zr-sug a:hover{background:#f5f7f4}"
         +"#zr-sug a .tp{color:#8a97a1;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}"
-        +"#zr-sug a.go{color:#ff5a1f}"
+        +"#zr-sug a.go{color:#e11b1b}"
         +"#zr-search-banner{max-width:1240px;margin:0 auto 6px;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font:600 14.5px 'Archivo',sans-serif;color:#3f4b55}"
-        +"#zr-search-banner b{color:#0f1c26}#zr-search-banner a{color:#5a6a75;font-weight:700;text-decoration:none}#zr-search-banner a:hover{color:#ff5a1f}";
+        +"#zr-search-banner b{color:#0f1c26}#zr-search-banner a{color:#5a6a75;font-weight:700;text-decoration:none}#zr-search-banner a:hover{color:#e11b1b}";
       d.head.appendChild(st);
     }
     var sug=d.getElementById("zr-sug");

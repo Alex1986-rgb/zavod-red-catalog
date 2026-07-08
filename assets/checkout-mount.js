@@ -20,12 +20,12 @@
       ".zr-co-panel .sub{color:#5a6a75;font-size:14px;margin:0 0 18px}" +
       ".zr-seg{display:inline-flex;background:#eef2f6;border-radius:12px;padding:4px;gap:4px;margin-bottom:18px}" +
       ".zr-seg button{border:none;background:none;padding:10px 18px;border-radius:9px;font:600 14.5px 'Archivo',sans-serif;color:#3f4b55;cursor:pointer;transition:.15s}" +
-      ".zr-seg button.on{background:#ff5a1f;color:#fff}" +
+      ".zr-seg button.on{background:#e11b1b;color:#fff}" +
       ".zr-frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}" +
       ".zr-field{margin-bottom:14px}.zr-field.full{grid-column:1/-1}" +
       ".zr-field label{display:block;font-size:13px;font-weight:600;color:#5a6a75;margin-bottom:7px}" +
       ".zr-field input,.zr-field textarea{width:100%;background:#f5f7f9;border:1px solid rgba(12,20,28,.1);border-radius:11px;padding:13px 15px;font:500 15px/1.4 'Archivo',sans-serif;color:#0f1c26;transition:.15s;resize:vertical}" +
-      ".zr-field input:focus,.zr-field textarea:focus{outline:none;border-color:#ff5a1f;background:#fff;box-shadow:0 0 0 3px rgba(255,90,31,.12)}" +
+      ".zr-field input:focus,.zr-field textarea:focus{outline:none;border-color:#e11b1b;background:#fff;box-shadow:0 0 0 3px rgba(225,27,27,.12)}" +
       ".zr-field.err input{border-color:#c33b3b;background:#fff5f5}" +
       ".zr-co-sum{background:#fff;border:1px solid rgba(12,20,28,.1);border-radius:18px;padding:24px;position:sticky;top:90px}" +
       ".zr-co-sum h2{font:700 20px 'Space Grotesk',sans-serif;margin:0 0 14px;color:#0f1c26}" +
@@ -36,17 +36,17 @@
       ".zr-co-sum .sr{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:14.5px;color:#3f4b55}" +
       ".zr-co-sum .sr b{color:#0f1c26}.zr-co-sum .sr.good b{color:#12915f}.zr-co-sum .sr .muted{color:#8a97a1;font-size:13px}" +
       ".zr-co-sum .sr.total{border-top:1px solid rgba(12,20,28,.1);margin-top:8px;padding-top:14px}.zr-co-sum .sr.total b{font:700 24px 'Space Grotesk',sans-serif}" +
-      ".zr-co-btn{display:flex;align-items:center;justify-content:center;width:100%;margin-top:16px;padding:15px 22px;border-radius:12px;font:700 15px 'Archivo',sans-serif;background:#ff5a1f;color:#fff;border:none;cursor:pointer;transition:.15s;text-decoration:none}" +
-      ".zr-co-btn:hover{background:#e8500f}" +
+      ".zr-co-btn{display:flex;align-items:center;justify-content:center;width:100%;margin-top:16px;padding:15px 22px;border-radius:12px;font:700 15px 'Archivo',sans-serif;background:#e11b1b;color:#fff;border:none;cursor:pointer;transition:.15s;text-decoration:none}" +
+      ".zr-co-btn:hover{background:#cf1616}" +
       ".zr-co-sum .sn{color:#8a97a1;font-size:12.5px;line-height:1.5;margin:12px 0 0;text-align:center}" +
       ".zr-co-ok{max-width:620px;margin:16px auto 40px;text-align:center;background:#fff;border:1px solid rgba(12,20,28,.1);border-radius:18px;padding:46px 34px}" +
       ".zr-co-ok .ic{width:74px;height:74px;border-radius:50%;background:rgba(18,145,95,.12);color:#12915f;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:38px}" +
       ".zr-co-ok h2{font:700 26px 'Space Grotesk',sans-serif;color:#0f1c26;margin:0 0 10px}" +
       ".zr-co-ok p{color:#5a6a75;font-size:15px;line-height:1.6;margin:0 auto 8px;max-width:440px}" +
-      ".zr-co-ok .ord{font:700 16px 'IBM Plex Mono',monospace;color:#ff5a1f;margin:14px 0 22px}" +
+      ".zr-co-ok .ord{font:700 16px 'IBM Plex Mono',monospace;color:#e11b1b;margin:14px 0 22px}" +
       ".zr-co-ok .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px}" +
       ".zr-co-ok a{display:inline-flex;align-items:center;padding:13px 24px;border-radius:12px;font-weight:700;font-size:14.5px;text-decoration:none}" +
-      ".zr-co-ok a.pri{background:#ff5a1f;color:#fff}.zr-co-ok a.gh{background:#fff;color:#0f1c26;border:1px solid rgba(12,20,28,.14)}" +
+      ".zr-co-ok a.pri{background:#e11b1b;color:#fff}.zr-co-ok a.gh{background:#fff;color:#0f1c26;border:1px solid rgba(12,20,28,.14)}" +
       "@media(max-width:900px){.zr-co-grid{grid-template-columns:1fr}.zr-co-sum{position:static}}" +
       "@media(max-width:520px){.zr-frow{grid-template-columns:1fr}}";
     d.head.appendChild(s);
