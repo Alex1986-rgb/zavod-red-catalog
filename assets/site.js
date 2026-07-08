@@ -70,7 +70,7 @@
       var e = els[i]; if (e.children.length) continue;
       var t = norm(e.textContent);
       if (t.length < 3 || t.length > 44) continue;
-      if (/₽|кВт|Н·м|наличии|заказ|аналог/i.test(t)) continue;
+      if (/₽|кВт|Н·м|наличии|заказ|аналог|корзин|клик|купить|расч|подбор/i.test(t)) continue;
       if (!/[A-ZА-Я]/.test(t) || !/[0-9]/.test(t)) continue;
       var fs = parseFloat(getComputedStyle(e).fontSize) || 12;
       var fw = parseInt(getComputedStyle(e).fontWeight) || 400;
@@ -79,25 +79,34 @@
     }
     return best;
   }
+  function priceFrom(txt) {
+    var m = txt.match(/\u043e\u0442\s*(\d[\d\s\u00a0\u202f]{2,})\s*\u20bd/i);
+    if (!m) { var all = txt.match(/(\d[\d\s\u00a0\u202f]{2,})\s*\u20bd/g) || []; if (all.length) m = [null, all[all.length - 1]]; }
+    return m ? parseInt(String(m[1]).replace(/[\s\u00a0\u202f]/g, ""), 10) : 0;
+  }
   function cardInfo(btn) {
-    // climb to a product card and extract name + price
-    var card = btn.closest("[class]") || btn.parentElement, hop = 0, name = "", price = 0;
-    while (card && hop < 8) {
+    // накапливаем цену/имя/картинку, поднимаясь к компактному контейнеру карточки
+    var card = btn.parentElement, hop = 0, name = "", price = 0, img = "";
+    while (card && hop < 9) {
       var txt = card.textContent || "";
-      var pm = txt.match(/(\d[\d\s ]{2,})\s*₽/);
-      if (pm && txt.length < 900) {
-        price = parseInt(pm[1].replace(/[\s ]/g, ""), 10);
-        name = pickName(card);
-        if (name) break;
+      if (/\u20bd/.test(txt) && txt.length < 900) {
+        if (!price) price = priceFrom(txt);
+        if (!name) name = pickName(card);
+        if (!img) { var im = card.querySelector("img"); if (im) img = im.getAttribute("src") || ""; }
+        if (price && name) break;
       }
       card = card.parentElement; hop++;
     }
-    return { name: name || "Редуктор", price: price || 0 };
+    // одиночная страница товара: мало кнопок «В корзину» → имя из H1
+    var addN = 999; try { addN = [].slice.call(d.querySelectorAll("button,a")).filter(function (b) { return /^(\u0412 \u043a\u043e\u0440\u0437\u0438\u043d\u0443|\u041a\u0443\u043f\u0438\u0442\u044c|\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c)/.test(norm(b.textContent)); }).length; } catch (e) {}
+    var h1 = d.querySelector("h1");
+    if (h1 && addN <= 3) { var h = norm(h1.textContent); if (h) name = h; }
+    return { name: name || "\u0420\u0435\u0434\u0443\u043a\u0442\u043e\u0440", price: price || 0, img: img };
   }
   function addToCart(btn) {
     var info = cardInfo(btn), c = getCart();
     var ex = c.items.filter(function (i) { return i.name === info.name; })[0];
-    if (ex) ex.qty = (ex.qty || 1) + 1; else c.items.push({ name: info.name, price: info.price, qty: 1 });
+    if (ex) ex.qty = (ex.qty || 1) + 1; else c.items.push({ name: info.name, price: info.price, qty: 1, img: info.img || "" });
     saveCart(c);
     toast("Добавлено в корзину: " + info.name);
   }
@@ -380,6 +389,7 @@
   }
   function init() {
     injectStateCSS();
+    try { window.zrRefreshBadge = updateBadge; } catch (e) {}
     try { forceLight(); } catch (e) {}
     try { repointContacts(); } catch (e) {}
     updateBadge();
