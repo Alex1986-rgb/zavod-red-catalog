@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UTM-метки рассылки — Завод Редукторов</title>
+<meta name="description" content="Готовые UTM-ссылки для email-рассылки калькулятора и инструкция мониторинга в Яндекс.Метрике">
+<style>
+  :root {
+    --bg:#F4F6F9;--surface:#FFFFFF;--surface2:#EDF0F5;--border:#D4DAE6;
+    --text:#1C2433;--text-muted:#5A6A82;--accent:#CC2D2D;--accent-soft:#F5ECEC;
+    --steel:#2F4A6E;--steel-light:#EAF0F8;
+    --mono:ui-monospace,'Courier New',monospace;--sans:system-ui,-apple-system,sans-serif;
+    --radius:8px;--shadow:0 1px 3px rgba(28,36,51,.08),0 4px 12px rgba(28,36,51,.05);
+  }
+  @media(prefers-color-scheme:dark){:root{
+    --bg:#111820;--surface:#1A2433;--surface2:#202D40;--border:#2C3D55;
+    --text:#E2E8F0;--text-muted:#7A90AA;--accent:#E04040;--accent-soft:#2A1A1A;
+    --steel:#5B82B4;--steel-light:#182030;
+  }}
+  :root[data-theme="light"]{--bg:#F4F6F9;--surface:#FFFFFF;--surface2:#EDF0F5;--border:#D4DAE6;--text:#1C2433;--text-muted:#5A6A82;--accent:#CC2D2D;--accent-soft:#F5ECEC;--steel:#2F4A6E;--steel-light:#EAF0F8;}
+  :root[data-theme="dark"]{--bg:#111820;--surface:#1A2433;--surface2:#202D40;--border:#2C3D55;--text:#E2E8F0;--text-muted:#7A90AA;--accent:#E04040;--accent-soft:#2A1A1A;--steel:#5B82B4;--steel-light:#182030;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;padding:32px 20px 48px;min-height:100vh}
+  .page{max-width:980px;margin:0 auto}
+  .header{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid var(--accent)}
+  .header-badge{background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-top:5px;white-space:nowrap;flex-shrink:0}
+  .header-title{font-size:22px;font-weight:700;color:var(--text);text-wrap:balance;line-height:1.3}
+  .header-sub{font-size:13px;color:var(--text-muted);margin-top:3px}
+  .grid{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .card-head{background:var(--steel-light);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:10px}
+  .card-head-icon{font-size:16px;line-height:1}
+  .card-head-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--steel)}
+  .params{padding:16px;display:flex;flex-direction:column;gap:10px}
+  .param-row{display:grid;grid-template-columns:130px 1fr;gap:8px;align-items:center}
+  .param-key{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+  .param-val{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:5px 10px;font-family:var(--mono);font-size:12.5px;color:var(--steel);font-weight:600;cursor:pointer;transition:background .15s;user-select:all}
+  .param-val:hover{background:var(--steel-light)}
+  .links-table{width:100%;border-collapse:collapse}
+  .links-table thead tr{background:var(--surface2)}
+  .links-table th{text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);padding:9px 14px;border-bottom:1px solid var(--border)}
+  .links-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+  .links-table tr:last-child td{border-bottom:none}
+  .links-table tr:hover td{background:var(--surface2)}
+  .link-label{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+  .link-desc{font-size:11.5px;color:var(--text-muted)}
+  .content-chip{display:inline-block;background:var(--accent-soft);color:var(--accent);font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:4px}
+  .utm-url{font-family:var(--mono);font-size:11px;color:var(--text-muted);word-break:break-all;line-height:1.5;cursor:pointer;transition:color .15s;display:block;margin-top:4px;padding:6px 8px;background:var(--surface2);border-radius:4px;border:1px solid var(--border)}
+  .utm-url:hover{color:var(--steel);border-color:var(--steel)}
+  .copy-hint{font-size:10px;color:var(--text-muted);margin-top:2px}
+  .steps{padding:14px 16px;display:flex;flex-direction:column;gap:14px}
+  .step{display:flex;gap:12px}
+  .step-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--steel);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .step-body{flex:1}
+  .step-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px}
+  .step-text{font-size:12.5px;color:var(--text-muted);line-height:1.55}
+  .step-path{margin-top:5px;background:var(--surface2);border-left:3px solid var(--steel);padding:5px 10px;font-family:var(--mono);font-size:11px;color:var(--steel);border-radius:0 4px 4px 0}
+  .step-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .step-tag{background:var(--steel-light);color:var(--steel);font-size:10.5px;font-family:var(--mono);padding:2px 7px;border-radius:4px;border:1px solid var(--border)}
+  .step-warn{margin-top:6px;background:var(--accent-soft);border-left:3px solid var(--accent);padding:5px 10px;font-size:11.5px;color:var(--text-muted);border-radius:0 4px 4px 0}
+  .section-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+  .counter-badge{display:inline-flex;align-items:center;gap:6px;background:var(--steel-light);border:1px solid var(--border);border-radius:6px;padding:6px 12px;margin:14px 16px;font-size:12px;color:var(--text-muted)}
+  .counter-num{font-family:var(--mono);font-weight:700;color:var(--steel);font-size:13px;font-variant-numeric:tabular-nums}
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--steel);color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.25);opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:nowrap;z-index:999}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  code{background:var(--surface2);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:11.5px}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="header-badge">Email</div>
+    <div>
+      <div class="header-title">UTM-метки рассылки «Калькулятор 2026»</div>
+      <div class="header-sub">Завод Редукторов · zavod-red.ru · Яндекс.Метрика #109758131</div>
+    </div>
+  </header>
+
+  <div style="margin-bottom:18px;">
+    <div class="section-label">Постоянные параметры</div>
+    <div class="card">
+      <div class="params">
+        <div class="param-row">
+          <div class="param-key">utm_source</div>
+          <div class="param-val" onclick="copyText('zr_email',this)">zr_email</div>
+        </div>
+        <div class="param-row">
+          <div class="param-key">utm_medium</div>
+          <div class="param-val" onclick="copyText('email',this)">email</div>
+        </div>
+        <div class="param-row">
+          <div class="param-key">utm_campaign</div>
+          <div class="param-val" onclick="copyText('calculator_launch',this)">calculator_launch</div>
+        </div>
+        <div class="param-row">
+          <div class="param-key">utm_content</div>
+          <div class="param-val" style="color:var(--text-muted);font-style:italic;cursor:default">меняется под каждую ссылку ↓</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);padding:0 16px 14px;line-height:1.5;">
+        Нажмите на значение — скопируется в буфер. <code>utm_content</code> — единственное, что меняется между ссылками.
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div>
+      <div class="section-label">Готовые ссылки для письма</div>
+      <div class="card">
+        <table class="links-table">
+          <thead>
+            <tr><th>Элемент письма</th><th>Ссылка с UTM</th></tr>
+          </thead>
+          <tbody id="links-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Где смотреть переходы</div>
+      <div class="card">
+        <div class="card-head">
+          <span class="card-head-icon">📊</span>
+          <span class="card-head-title">Яндекс.Метрика</span>
+        </div>
+        <div class="counter-badge">
+          Счётчик: <span class="counter-num">109758131</span>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <div class="step-title">Откройте раздел UTM-меток</div>
+              <div class="step-path">Отчёты → Источники → Метки UTM</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <div class="step-title">Найдите кампанию</div>
+              <div class="step-text">Раскройте строку по <code>utm_source</code>:</div>
+              <div class="step-tags">
+                <span class="step-tag">zr_email</span>
+                <span class="step-tag">email</span>
+                <span class="step-tag">calculator_launch</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <div class="step-title">Сравните элементы письма</div>
+              <div class="step-text">На уровне <code>utm_content</code> видно, что кликают чаще:</div>
+              <div class="step-tags">
+                <span class="step-tag">hero</span>
+                <span class="step-tag">parameters</span>
+                <span class="step-tag">button</span>
+                <span class="step-tag">cta_html</span>
+                <span class="step-tag">benefits</span>
+                <span class="step-tag">webview</span>
+                <span class="step-tag">footer</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <div class="step-title">Добавьте столбец «Цель»</div>
+              <div class="step-text">Добавьте цель «Заявка» — увидите, кто не просто кликнул, но и оставил заявку.</div>
+              <div class="step-warn">Цели в Метрике нужно создать отдельно (JS-событие «lead»).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;" class="card">
+        <div class="card-head">
+          <span class="card-head-icon">🔍</span>
+          <span class="card-head-title">Google Analytics 4</span>
+        </div>
+        <div class="steps" style="padding-top:12px;">
+          <div class="step">
+            <div class="step-num" style="font-size:10px;width:20px;height:20px;">→</div>
+            <div class="step-body">
+              <div class="step-path">Reports → Acquisition → Traffic acquisition</div>
+              <div class="step-text" style="margin-top:4px;">Фильтр: Session medium = email</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:12px;color:var(--text-muted);line-height:1.6;">
+        <strong style="color:var(--text);">Файл для рассылки:</strong><br>
+        <code>email-ready-utm.zip</code> — готовый архив с HTML + картинками.<br>
+        Загрузите картинки на сервер и замените пути на абсолютные URL.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast">Скопировано ✓</div>
+
+<script>
+const BASE='https://zavod-red.ru';
+const STATIC='utm_source=zr_email&utm_medium=email&utm_campaign=calculator_launch';
+const LINKS=[
+  {label:'Посмотреть в браузере',desc:'Ссылка в верхней строке письма',content:'webview',path:'/'},
+  {label:'Hero-баннер',desc:'Клик по главному изображению',content:'hero',path:'/'},
+  {label:'Карточки подбора',desc:'Блок «по параметрам / по фото»',content:'parameters',path:'/podbor'},
+  {label:'CTA-картинка',desc:'Изображение с кнопкой «7 минут»',content:'button',path:'/podbor'},
+  {label:'HTML-кнопка (дублёр)',desc:'Красная кнопка под картинкой',content:'cta_html',path:'/podbor'},
+  {label:'Преимущества',desc:'Блок «Быстро, бесплатно, надёжно»',content:'benefits',path:'/podbor'},
+  {label:'Соцсеть ВКонтакте',desc:'Ссылка в текстовом подвале',content:'social_vk',path:null,custom:'https://vk.com/zavod_reduktorov'},
+  {label:'Telegram',desc:'Ссылка в текстовом подвале',content:'social_tg',path:null,custom:'https://t.me/zavod_red'},
+];
+const tbody=document.getElementById('links-body');
+LINKS.forEach(item=>{
+  const base=item.custom||`${BASE}${item.path}`;
+  const url=`${base}?${STATIC}&utm_content=${item.content}`;
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td>
+      <div class="link-label">${item.label}</div>
+      <div class="link-desc">${item.desc}</div>
+    </td>
+    <td>
+      <span class="content-chip">${item.content}</span>
+      <span class="utm-url" onclick="copyText('${url.replace(/'/g,"\\'")}',this)">${url}</span>
+      <div class="copy-hint">↑ нажмите, чтобы скопировать</div>
+    </td>`;
+  tbody.appendChild(tr);
+});
+function copyText(text,el){
+  navigator.clipboard.writeText(text).catch(()=>{
+    const ta=document.createElement('textarea');
+    ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');
+    document.body.removeChild(ta);
+  }).finally(()=>{
+    const t=document.getElementById('toast');
+    t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);
+  });
+}
+</script>
+</body>
+</html>
