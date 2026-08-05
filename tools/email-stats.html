@@ -4,189 +4,227 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Статистика рассылки — Завод Редукторов</title>
-<meta name="description" content="Открытия и переходы по email-рассылке калькулятора редукторов">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 <style>
-  :root{
-    --bg:#F4F6F9;--surface:#fff;--surface2:#EDF0F5;--border:#D4DAE6;
-    --text:#1C2433;--muted:#5A6A82;--accent:#CC2D2D;--steel:#2F4A6E;
-    --steel-light:#EAF0F8;--green:#2A9D6A;
-    --sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'Courier New',monospace;
-  }
-  @media(prefers-color-scheme:dark){:root{
-    --bg:#111820;--surface:#1A2433;--surface2:#202D40;--border:#2C3D55;
-    --text:#E2E8F0;--muted:#7A90AA;--steel:#5B82B4;--steel-light:#182030;
-  }}
-  :root[data-theme="light"]{--bg:#F4F6F9;--surface:#fff;--surface2:#EDF0F5;--border:#D4DAE6;--text:#1C2433;--muted:#5A6A82;--steel:#2F4A6E;--steel-light:#EAF0F8;}
-  :root[data-theme="dark"]{--bg:#111820;--surface:#1A2433;--surface2:#202D40;--border:#2C3D55;--text:#E2E8F0;--muted:#7A90AA;--steel:#5B82B4;--steel-light:#182030;}
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;padding:28px 16px 48px;min-height:100vh}
-  .page{max-width:960px;margin:0 auto}
-  .header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid var(--accent)}
-  .badge{background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px;flex-shrink:0}
-  .header-title{font-size:20px;font-weight:700;line-height:1.3}
-  .header-sub{font-size:12px;color:var(--muted);margin-top:2px}
-  .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
-  @media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr}}
-  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
-  .kpi-num{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
-  .kpi-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:4px}
-  .kpi-accent{color:var(--accent)}
-  .kpi-green{color:var(--green)}
-  .kpi-steel{color:var(--steel)}
-  .charts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
-  @media(max-width:700px){.charts{grid-template-columns:1fr}}
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
-  .card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:14px}
-  .section-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-  .log-table{width:100%;border-collapse:collapse;font-size:13px;overflow-x:auto;display:block}
-  .log-table th{text-align:left;padding:8px 14px;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border);background:var(--surface2)}
-  .log-table td{padding:9px 14px;border-bottom:1px solid var(--border)}
-  .log-table tr:last-child td{border-bottom:none}
-  .tag{display:inline-block;background:var(--steel-light);color:var(--steel);font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:4px;border:1px solid var(--border)}
-  .metrika-link{display:inline-flex;align-items:center;gap:6px;background:var(--steel-light);border:1px solid var(--border);border-radius:7px;padding:8px 14px;font-size:12.5px;color:var(--steel);text-decoration:none;font-weight:600;margin-top:12px}
-  .metrika-link:hover{background:var(--border)}
-  .empty{text-align:center;padding:48px 20px;color:var(--muted)}
-  .empty-icon{font-size:48px;margin-bottom:12px}
-  #loader{text-align:center;padding:60px;color:var(--muted);font-size:15px}
+:root{
+  --bg:#F4F6F9;--surface:#fff;--s2:#EDF0F5;--border:#D4DAE6;
+  --text:#1C2433;--muted:#5A6A82;--accent:#CC2D2D;--steel:#2F4A6E;
+  --sl:#EAF0F8;--green:#2A9D6A;
+  --sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'Courier New',monospace;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#111820;--surface:#1A2433;--s2:#202D40;--border:#2C3D55;
+  --text:#E2E8F0;--muted:#7A90AA;--steel:#5B82B4;--sl:#182030;
+}}
+:root[data-theme="light"]{--bg:#F4F6F9;--surface:#fff;--s2:#EDF0F5;--border:#D4DAE6;--text:#1C2433;--muted:#5A6A82;--steel:#2F4A6E;--sl:#EAF0F8;}
+:root[data-theme="dark"]{--bg:#111820;--surface:#1A2433;--s2:#202D40;--border:#2C3D55;--text:#E2E8F0;--muted:#7A90AA;--steel:#5B82B4;--sl:#182030;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;padding:28px 16px 56px}
+.page{max-width:900px;margin:0 auto}
+.header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid var(--accent)}
+.badge{background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px;flex-shrink:0}
+.h1{font-size:20px;font-weight:700;line-height:1.3}
+.sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* Переходы (UTM) */
+.utm-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:18px;overflow:hidden}
+.utm-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
+.utm-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.btn-metrika{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:9px 18px;border-radius:8px;letter-spacing:.01em;transition:opacity .15s}
+.btn-metrika:hover{opacity:.88}
+.utm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+@media(max-width:600px){.utm-grid{grid-template-columns:1fr 1fr}}
+.utm-cell{padding:14px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.utm-cell:nth-child(3n){border-right:none}
+@media(max-width:600px){.utm-cell:nth-child(2n){border-right:none}}
+.utm-cell:nth-last-child(-n+3){border-bottom:none}
+.utm-key{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:700;background:#FDECEA;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:4px}
+.utm-val{font-family:var(--mono);font-size:12px;color:var(--steel);font-weight:600}
+.utm-desc{font-size:11.5px;color:var(--muted);margin-top:2px}
+
+/* Открытия */
+.opens-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:18px;overflow:hidden}
+.opens-head{padding:14px 18px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.pill{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;font-weight:700;letter-spacing:.04em}
+.pill-live{background:#D1FAE5;color:#065F46}
+.pill-wait{background:#FEF3C7;color:#92400E}
+
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--border)}
+@media(max-width:560px){.kpi-row{grid-template-columns:1fr 1fr}}
+.kpi{padding:18px 20px;border-right:1px solid var(--border);text-align:center}
+.kpi:last-child{border-right:none}
+.kpi-n{font-size:36px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.kpi-l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.n-red{color:var(--accent)} .n-steel{color:var(--steel)} .n-green{color:var(--green)}
+
+.charts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:16px}
+@media(max-width:680px){.charts{grid-template-columns:1fr}}
+.chart-card{background:var(--s2);border-radius:8px;padding:14px}
+.chart-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:12px}
+
+.journal{overflow-x:auto}
+table.jt{width:100%;border-collapse:collapse;font-size:13px;min-width:400px}
+.jt th{text-align:left;padding:9px 16px;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border);background:var(--s2)}
+.jt td{padding:10px 16px;border-bottom:1px solid var(--border)}
+.jt tr:last-child td{border-bottom:none}
+code{font-family:var(--mono);font-size:11.5px;background:var(--s2);padding:1px 5px;border-radius:3px}
+.no-data{text-align:center;padding:40px 20px;color:var(--muted)}
+.no-data-icon{font-size:40px;margin-bottom:10px}
 </style>
 </head>
 <body>
 <div class="page">
+
   <header class="header">
     <div class="badge">Live</div>
     <div>
-      <div class="header-title">Статистика рассылки — Завод Редукторов</div>
-      <div class="header-sub">Открытия писем · Кампания <strong>calculator_launch</strong> · Яндекс.Метрика #109758131</div>
+      <div class="h1">Статистика рассылки — Завод Редукторов</div>
+      <div class="sub">Кампания <strong>calculator_launch</strong> · Метрика #109758131</div>
     </div>
   </header>
 
-  <div id="loader">⏳ Загружаем данные…</div>
-  <div id="app" style="display:none"></div>
+  <!-- ПЕРЕХОДЫ — всегда видны через Метрику -->
+  <div class="utm-block">
+    <div class="utm-head">
+      <div class="utm-title">📊 Переходы на сайт (UTM-клики)</div>
+      <a class="btn-metrika"
+         href="https://metrika.yandex.ru/stat/traffic_sources/utm?id=109758131&group=day&period=month"
+         target="_blank">
+        Открыть в Яндекс.Метрике →
+      </a>
+    </div>
+    <div class="utm-grid">
+      <div class="utm-cell">
+        <div class="utm-key">utm_content=hero</div>
+        <div class="utm-val">Hero-баннер</div>
+        <div class="utm-desc">Клик по главному изображению</div>
+      </div>
+      <div class="utm-cell">
+        <div class="utm-key">utm_content=parameters</div>
+        <div class="utm-val">Карточки подбора</div>
+        <div class="utm-desc">«По параметрам / По фото»</div>
+      </div>
+      <div class="utm-cell">
+        <div class="utm-key">utm_content=button</div>
+        <div class="utm-val">CTA-картинка</div>
+        <div class="utm-desc">Изображение «7 минут»</div>
+      </div>
+      <div class="utm-cell">
+        <div class="utm-key">utm_content=cta_html</div>
+        <div class="utm-val">HTML-кнопка</div>
+        <div class="utm-desc">Красная кнопка-дублёр</div>
+      </div>
+      <div class="utm-cell">
+        <div class="utm-key">utm_content=benefits</div>
+        <div class="utm-val">Преимущества</div>
+        <div class="utm-desc">Блок «Быстро / Бесплатно»</div>
+      </div>
+      <div class="utm-cell">
+        <div class="utm-key">utm_content=webview</div>
+        <div class="utm-val">Открыть в браузере</div>
+        <div class="utm-desc">Ссылка в верхней строке</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ОТКРЫТИЯ — из пикселя -->
+  <div class="opens-block">
+    <div class="opens-head">
+      <span>📬 Открытия писем (пиксель)</span>
+      <span id="status-pill" class="pill pill-wait">Загрузка…</span>
+    </div>
+    <div id="opens-content">
+      <div class="no-data"><div class="no-data-icon">⏳</div>Загружаем данные…</div>
+    </div>
+  </div>
+
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 <script>
 const API = 'https://zavod-red.ru/api/email-stats-public.php';
 const CAMPAIGN = 'calculator_launch';
-const RED='#CC2D2D', STEEL='#2F4A6E', PAL=[RED,STEEL,'#5B82B4','#8A9BB0','#A0B4C8','#C0CDD8'];
+const RED='#CC2D2D',STEEL='#2F4A6E',PAL=[RED,STEEL,'#5B82B4','#8A9BB0','#A0B4C8'];
 
-const METRIKA = 'https://metrika.yandex.ru/stat/traffic_sources/utm?id=109758131&group=day&period=month';
-
-async function load() {
+async function load(){
+  const pill = document.getElementById('status-pill');
+  const box  = document.getElementById('opens-content');
   try {
-    const [all, detail] = await Promise.all([
-      fetch(API).then(r=>r.json()),
-      fetch(`${API}?c=${CAMPAIGN}`).then(r=>r.json())
-    ]);
+    const r = await fetch(`${API}?c=${CAMPAIGN}`, {cache:'no-store'});
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    const d = await r.json();
+    if(!d.ok) throw new Error(d.error || 'API error');
 
-    document.getElementById('loader').style.display = 'none';
-    const app = document.getElementById('app');
-    app.style.display = 'block';
+    pill.textContent = 'Работает';
+    pill.className = 'pill pill-live';
 
-    const opens = detail.total || 0;
-    const campaigns = all.campaigns || [];
-    const byDay = detail.by_day || [];
-    const byDevice = detail.by_device || [];
-    const byClient = detail.by_client || [];
+    const opens = d.total || 0;
+    const byDay = d.by_day || [];
+    const byDevice = d.by_device || [];
+    const byClient = d.by_client || [];
+    const peakDay  = byDay.reduce((a,b)=>+b.opens>+a.opens?b:a,{opens:0,day:'—'});
+    const topDev   = byDevice[0] || {device:'—',cnt:0};
+    const devLabel = {mobile:'📱 Телефон',tablet:'💻 Планшет',desktop:'🖥 ПК'}[topDev.device]||topDev.device;
 
-    // Считаем пик дня
-    const peakDay = byDay.reduce((a,b)=>+b.opens>+a.opens?b:a, {opens:0,day:'—'});
-    const topDevice = byDevice[0] || {device:'—',cnt:0};
+    if(opens === 0){
+      box.innerHTML = `
+        <div class="no-data">
+          <div class="no-data-icon">📭</div>
+          <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px">Писем ещё не открывали</div>
+          <div style="font-size:13px">Пиксель встроен в письмо — статистика появится после первой отправки</div>
+          <div style="margin-top:14px;font-size:12px;background:var(--s2);border-radius:8px;padding:10px 14px;display:inline-block;text-align:left">
+            Пиксель: <code>https://zavod-red.ru/api/email-track.php?c=calculator_launch</code>
+          </div>
+        </div>`;
+      return;
+    }
 
-    app.innerHTML = `
-      <!-- KPI -->
+    box.innerHTML = `
       <div class="kpi-row">
-        <div class="kpi">
-          <div class="kpi-num kpi-accent">${opens}</div>
-          <div class="kpi-label">Всего открытий</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-num kpi-steel">${peakDay.opens}</div>
-          <div class="kpi-label">Пик за день (${peakDay.day})</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-num kpi-green">${topDevice.cnt}</div>
-          <div class="kpi-label">С ${topDevice.device === 'mobile' ? 'телефона' : topDevice.device === 'desktop' ? 'ПК' : topDevice.device}</div>
-        </div>
+        <div class="kpi"><div class="kpi-n n-red">${opens}</div><div class="kpi-l">Открытий</div></div>
+        <div class="kpi"><div class="kpi-n n-steel">${peakDay.opens}</div><div class="kpi-l">Пик — ${peakDay.day}</div></div>
+        <div class="kpi"><div class="kpi-n n-green">${topDev.cnt}</div><div class="kpi-l">${devLabel}</div></div>
       </div>
-
-      <!-- Графики -->
       <div class="charts">
-        <div class="card">
-          <div class="card-title">Открытия по дням</div>
-          <canvas id="cDays" height="160"></canvas>
-        </div>
-        <div class="card">
-          <div class="card-title">Устройства</div>
-          <canvas id="cDevice" height="160"></canvas>
-        </div>
-        <div class="card">
-          <div class="card-title">Почтовый клиент</div>
-          <canvas id="cClient" height="160"></canvas>
-        </div>
+        <div class="chart-card"><div class="chart-title">По дням</div><canvas id="cD" height="160"></canvas></div>
+        <div class="chart-card"><div class="chart-title">Устройства</div><canvas id="cDev" height="160"></canvas></div>
+        <div class="chart-card"><div class="chart-title">Почтовый клиент</div><canvas id="cCli" height="160"></canvas></div>
       </div>
-
-      <!-- UTM-клики -->
-      <div class="card" style="margin-bottom:20px">
-        <div class="card-title">UTM-клики (переходы на сайт)</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.7">
-          Переходы по каждой ссылке письма отслеживаются в Яндекс.Метрике по параметру <span class="tag">utm_content</span>:<br>
-          <span class="tag">hero</span> <span class="tag">parameters</span> <span class="tag">button</span>
-          <span class="tag">cta_html</span> <span class="tag">benefits</span> <span class="tag">webview</span>
-        </div>
-        <a class="metrika-link" href="${METRIKA}" target="_blank">
-          📊 Открыть Яндекс.Метрика → Метки UTM ↗
-        </a>
-      </div>
-
-      <!-- Список кампаний -->
-      <div style="margin-bottom:10px" class="section-label">Все кампании</div>
-      <div class="card" style="overflow:auto">
-        <table class="log-table">
-          <thead><tr>
-            <th>Кампания</th><th>Открытий</th><th>Первое</th><th>Последнее</th>
-          </tr></thead>
-          <tbody>
-            ${campaigns.map(c=>`<tr>
-              <td><strong>${c.campaign}</strong></td>
-              <td style="font-size:18px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums">${c.opens}</td>
-              <td style="color:var(--muted);font-size:12px">${(c.first_open||'').slice(0,16)}</td>
-              <td style="color:var(--muted);font-size:12px">${(c.last_open||'').slice(0,16)}</td>
-            </tr>`).join('')}
-          </tbody>
+      <div class="journal">
+        <table class="jt">
+          <thead><tr><th>Кампания</th><th>Открытий</th><th>Первое</th><th>Последнее</th></tr></thead>
+          <tbody><tr>
+            <td><strong>${CAMPAIGN}</strong></td>
+            <td style="font-size:20px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums">${opens}</td>
+            <td style="color:var(--muted);font-size:12px">${(byDay[0]?.day||'—')}</td>
+            <td style="color:var(--muted);font-size:12px">${(byDay.at(-1)?.day||'—')}</td>
+          </tr></tbody>
         </table>
-      </div>
-    `;
+      </div>`;
 
-    // Рендерим графики
-    if (byDay.length) {
-      new Chart(document.getElementById('cDays'), {type:'bar',
-        data:{labels:byDay.map(r=>r.day),datasets:[{data:byDay.map(r=>+r.opens),backgroundColor:RED,borderRadius:4}]},
-        options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}
-      });
-    }
-    if (byDevice.length) {
-      new Chart(document.getElementById('cDevice'), {type:'doughnut',
-        data:{labels:byDevice.map(r=>r.device),datasets:[{data:byDevice.map(r=>+r.cnt),backgroundColor:PAL}]},
-        options:{plugins:{legend:{position:'bottom'}}}
-      });
-    }
-    if (byClient.length) {
-      new Chart(document.getElementById('cClient'), {type:'doughnut',
-        data:{labels:byClient.map(r=>r.mail_client),datasets:[{data:byClient.map(r=>+r.cnt),backgroundColor:PAL}]},
-        options:{plugins:{legend:{position:'bottom'}}}
-      });
-    }
+    if(byDay.length) new Chart(document.getElementById('cD'),{type:'bar',
+      data:{labels:byDay.map(r=>r.day),datasets:[{data:byDay.map(r=>+r.opens),backgroundColor:RED,borderRadius:4}]},
+      options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+    if(byDevice.length) new Chart(document.getElementById('cDev'),{type:'doughnut',
+      data:{labels:byDevice.map(r=>r.device),datasets:[{data:byDevice.map(r=>+r.cnt),backgroundColor:PAL}]},
+      options:{plugins:{legend:{position:'bottom'}}}});
+    if(byClient.length) new Chart(document.getElementById('cCli'),{type:'doughnut',
+      data:{labels:byClient.map(r=>r.mail_client),datasets:[{data:byClient.map(r=>+r.cnt),backgroundColor:PAL}]},
+      options:{plugins:{legend:{position:'bottom'}}}});
 
-  } catch(e) {
-    document.getElementById('loader').innerHTML =
-      '<div class="empty"><div class="empty-icon">📭</div>'
-      +'<div style="font-size:16px;font-weight:600;margin-bottom:6px">Данных пока нет</div>'
-      +'<div style="font-size:13px">Пиксель сработает при первом открытии письма<br>'
-      +'Убедитесь, что завод-red.ru/api/email-stats-public.php доступен</div></div>';
+  } catch(e){
+    pill.textContent = 'Нет соединения';
+    pill.className = 'pill pill-wait';
+    box.innerHTML = `
+      <div class="no-data">
+        <div class="no-data-icon">⚠️</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px">API недоступен</div>
+        <div style="font-size:12px">Данные по открытиям хранятся на сервере zavod-red.ru<br>
+        Переходы по UTM-меткам смотрите в <a href="https://metrika.yandex.ru/stat/traffic_sources/utm?id=109758131" target="_blank" style="color:var(--accent)">Яндекс.Метрике</a></div>
+      </div>`;
   }
 }
 load();
+setInterval(load, 60000); // обновляем каждую минуту
 </script>
 </body>
 </html>
