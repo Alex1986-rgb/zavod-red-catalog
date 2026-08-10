@@ -137,6 +137,18 @@ code{font-family:var(--mono);font-size:11.5px;background:var(--s2);padding:1px 5
     </div>
   </div>
 
+  <!-- IP-СВОДКА (агрегированно, без IP-адресов) -->
+  <div class="opens-block" id="ip-block">
+    <div class="opens-head">
+      <span>🌍 География и IP-сводка</span>
+      <span id="ip-pill" class="pill pill-wait">Загрузка…</span>
+    </div>
+    <div id="ip-content">
+      <div class="no-data"><div class="no-data-icon">⏳</div>Загружаем данные…</div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
@@ -224,7 +236,58 @@ async function load(){
   }
 }
 load();
-setInterval(load, 60000); // обновляем каждую минуту
+setInterval(load, 60000);
+
+// IP-сводка
+async function loadIP(){
+  const pill = document.getElementById('ip-pill');
+  const box  = document.getElementById('ip-content');
+  try {
+    const r = await fetch(`${API}?c=${CAMPAIGN}&ip=1`, {cache:'no-store'});
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    const d = await r.json();
+    if(!d.ok) throw new Error(d.error || 'API error');
+
+    pill.textContent = 'Работает';
+    pill.className = 'pill pill-live';
+
+    const uni = d.unique_ips || 0;
+    const total = d.total || 0;
+    const repeat = d.repeat_openers || 0;
+    const ru = d.ru_pct || 0;
+    const top = (d.top_ips || []).slice(0, 10);
+
+    box.innerHTML = `
+      <div class="kpi-row" style="grid-template-columns:repeat(4,1fr)">
+        <div class="kpi"><div class="kpi-n n-red">${uni}</div><div class="kpi-l">Уникальных IP</div></div>
+        <div class="kpi"><div class="kpi-n n-steel">${repeat}</div><div class="kpi-l">Повторных</div></div>
+        <div class="kpi"><div class="kpi-n n-green">${ru}%</div><div class="kpi-l">IP из РФ</div></div>
+        <div class="kpi"><div class="kpi-n n-steel">${Math.round(total/max(1,uni)*10)/10}</div><div class="kpi-l">Откр./IP</div></div>
+      </div>
+      <div style="padding:16px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:10px">Топ открытий (IP скрыты)</div>
+        <table class="jt">
+          <thead><tr><th>#</th><th>Открытий</th><th>Доля</th><th>График</th></tr></thead>
+          <tbody>
+            ${top.map((t,i)=>`<tr>
+              <td style="font-family:monospace">#${i+1}</td>
+              <td style="font-weight:700">${t.cnt}</td>
+              <td style="color:var(--muted)">${Math.round(t.cnt/max(1,total)*100)}%</td>
+              <td><div style="height:6px;background:var(--border);border-radius:3px;min-width:60px"><div style="height:6px;background:var(--accent);border-radius:3px;width:${Math.round(t.cnt/max(1,total)*100)}%"></div></div></td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`;
+  } catch(e){
+    pill.textContent = 'Нет данных';
+    pill.className = 'pill pill-wait';
+    box.innerHTML = '<div class="no-data"><div class="no-data-icon">📭</div>IP-сводка появится после первых открытий</div>';
+  }
+}
+function max(a,b){return a>b?a:b}
+loadIP();
+setInterval(loadIP, 60000);
+ // обновляем каждую минуту
 </script>
 </body>
 </html>
